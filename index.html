@@ -3,283 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silo | Next Generation Privacy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>SiloVPN | Secure & Private</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ============================== */
-        /* التكوين الأساسي (Variables) */
-        /* ============================== */
         :root {
-            --sidebar-width: 260px;
-            --bg-color: #f8fafc; /* خلفية فاتحة هادئة */
-            --sidebar-color: #ffffff; /* خلفية القائمة بيضاء */
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --accent: #2563eb; /* لون أزرق عصري ومريح للعين */
-            --accent-soft: rgba(37, 99, 235, 0.1);
-            --border-color: #e2e8f0;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* حركة ناعمة */
+            --sidebar-width: 280px;
+            --bg: #ffffff;
+            --sidebar-bg: #fdfdfd;
+            --text-dark: #1a1a1a;
+            --text-muted: #757575;
+            --accent: #2563eb;
+            --border: #f0f0f0;
+            --hover: #f5f5f5;
         }
 
-        /* تنسيق عام للجسم */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
-            color: var(--text-main);
-            background-color: var(--bg-color);
-            display: flex; /* لعمل تخطيط عمودي جانبي */
+            display: flex;
+            background-color: var(--bg);
+            color: var(--text-dark);
             min-height: 100vh;
-            overflow-x: hidden;
-            scroll-behavior: smooth; /* حركة تنقل ناعمة بين الأقسام */
         }
 
-        h1, h2, h3 { font-weight: 700; letter-spacing: -0.5px; margin: 0; }
-        p { color: var(--text-muted); line-height: 1.8; margin-top: 0.5rem; }
-
-        /* ============================== */
-        /* تصميم القائمة الجانبية (Sidebar) */
-        /* ============================== */
+        /* Sidebar Design */
         .sidebar {
             width: var(--sidebar-width);
-            background-color: var(--sidebar-color);
-            border-right: 1px solid var(--border-color);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
             height: 100vh;
-            position: fixed; /* ثابتة على اليسار عند السكرول */
+            position: fixed;
+            padding: 2rem 1.5rem;
             display: flex;
             flex-direction: column;
-            padding: 2rem 1.5rem;
             box-sizing: border-box;
-            z-index: 100;
         }
 
-        /* اللوجو */
-        .logo-container {
-            font-size: 1.8rem;
+        .brand {
+            font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -1.5px;
-            color: var(--accent);
-            text-align: center;
+            color: var(--text-dark);
             margin-bottom: 3rem;
-        }
-
-        /* روابط القائمة */
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .nav-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
+            letter-spacing: -1px;
             display: flex;
             align-items: center;
-            padding: 0.8rem 1rem;
-            border-radius: 10px;
-            transition: var(--transition);
         }
 
-        /* الحركات عند تمرير الماوس فوق الروابط */
-        .nav-links a:hover {
-            background-color: var(--accent-soft);
-            color: var(--accent);
-            transform: translateX(5px); /* حركة إزاحة بسيطة */
+        .brand i { color: var(--accent); margin-right: 10px; }
+
+        .nav-group { margin-bottom: 2rem; }
+        .nav-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
-        .nav-links a i {
-            margin-right: 15px; /* مسافة بين الأيقونة والنص */
-            width: 20px;
-            text-align: center;
-        }
-
-        /* أيقونة جوجل بلاي (الخيار المستقبلي) */
-        .play-store-container {
-            margin-top: auto; /* يدفعه لأسفل القائمة */
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .play-store-btn {
-            display: inline-flex;
+        .nav-link {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            background-color: #1a1a1a; /* لون داكن لأزرار المتاجر */
-            color: white;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+            margin-bottom: 5px;
+        }
+
+        .nav-link:hover { background: var(--hover); transform: translateX(5px); }
+        .nav-link i { width: 25px; margin-right: 15px; font-size: 1.1rem; }
+        .nav-link .arrow { margin-left: auto; font-size: 0.8rem; color: #ccc; }
+
+        /* Main Content */
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 4rem;
+            max-width: 800px;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        p { line-height: 1.8; color: #444; font-size: 1.1rem; }
+
+        .play-store {
+            margin-top: auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-google {
+            background: #000;
+            color: #fff;
             padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
-            transition: var(--transition);
-            opacity: 0.7; /* غير مفعلة الآن */
-            cursor: not-allowed;
-            pointer-events: none; /* يمنع الضغط */
-        }
-
-        /* هذه التنسيقات ستفعل عند وضع الرابط مستقبلاً */
-        .play-store-btn.active {
-            opacity: 1;
-            cursor: pointer;
-            pointer-events: auto;
-        }
-
-        .play-store-btn.active:hover {
-            background-color: #000000;
-            transform: translateY(-3px); /* حركة ارتفاع */
-        }
-
-        .play-store-btn i { font-size: 1.4rem; margin-right: 10px; }
-        .play-store-btn .text { text-align: left; }
-        .play-store-btn .get-it { font-size: 0.7rem; display: block; }
-        .play-store-btn .store-name { font-weight: 600; font-size: 1rem; }
-
-        /* ============================== */
-        /* المحتوى الرئيسي (Main Content) */
-        /* ============================== */
-        .main-content {
-            margin-left: var(--sidebar-width); /* مسافة تعادل عرض القائمة */
-            flex: 1;
-            padding: 4rem;
-            max-width: 900px;
-        }
-
-        /* الأقسام الأساسية */
-        section {
-            margin-bottom: 5rem;
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* ظل خفيف جداً */
-            transition: var(--transition);
-        }
-
-        /* حركات ناعمة للأقسام عند التمرير */
-        section:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            transform: translateY(-5px);
-        }
-
-        section h2 {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
-        section h2 i {
-            margin-right: 15px;
-            font-size: 1.6rem;
-        }
-
-        ul.privacy-list {
-            padding-left: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        ul.privacy-list li {
-            margin-bottom: 1rem;
-            color: var(--text-muted);
-        }
-
-        ul.privacy-list li strong {
-            color: var(--text-main);
-        }
-
-        /* الفوتر (بدون أسماء تطوير) */
-        footer {
-            margin-top: 5rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 2rem;
-        }
-
-        /* ============================== */
-        /* تحسينات للشاشات الصغيرة */
-        /* ============================== */
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
             body { flex-direction: column; }
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: static;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                padding: 1.5rem;
-            }
-            .logo-container { margin-bottom: 1.5rem; }
-            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; }
-            .nav-links li { margin: 0 0.5rem 0.5rem 0.5rem; }
-            .main-content { margin-left: 0; padding: 2rem 1rem; }
-            .play-store-container { display: none; } /* نخفيه في الموبايل من الجانب */
+            .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); }
+            main { margin-left: 0; padding: 2rem; }
         }
     </style>
 </head>
 <body>
 
     <nav class="sidebar">
-        <div class="logo-container">SILO</div>
-        
-        <ul class="nav-links">
-            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#privacy"><i class="fas fa-user-shield"></i> Privacy Policy</a></li>
-            <li><a href="#terms"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
-            <li><a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a></li>
-        </ul>
+        <a href="index.html" style="text-decoration: none;" class="brand">
+             SiloVPN
+        </a>
 
-        <div class="play-store-container">
-            <a href="#" class="play-store-btn">
-                <i class="fab fa-google-play"></i>
-                <div class="text">
-                    <span class="get-it">Get it on</span>
-                    <span class="store-name">Google Play</span>
+        <div class="nav-group">
+            <div class="nav-group-title">Legal Information</div>
+            <a href="privacy.html" class="nav-link">
+                <i class="fas fa-shield-halved"></i> Privacy Policy <span class="arrow">></span>
+            </a>
+            <a href="terms.html" class="nav-link">
+                <i class="fas fa-file-lines"></i> Terms of Service <span class="arrow">></span>
+            </a>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-title">Help</div>
+            <a href="support.html" class="nav-link">
+                <i class="fas fa-circle-question"></i> Help & Support <span class="arrow">></span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fas fa-circle-info"></i> About <span class="arrow">></span>
+            </a>
+        </div>
+
+        <div class="play-store">
+            <a href="#" class="btn-google">
+                <i class="fab fa-google-play" style="font-size: 1.5rem; margin-right: 12px;"></i>
+                <div style="text-align: left;">
+                    <div style="font-size: 0.7rem;">GET IT ON</div>
+                    <div style="font-weight: 600;">Google Play</div>
                 </div>
             </a>
-            <p style="font-size: 0.7rem; margin-top: 5px;">(App Coming Soon)</p>
         </div>
     </nav>
 
-    <main class="main-content">
-        
-        <section id="home">
-            <h2><i class="fas fa-shield-alt"></i> Redefining Privacy</h2>
-            <p>Welcome to the official digital sanctuary for Silo. We are building the next generation of privacy-focused tools, dedicated to protecting your data and securing your online presence without compromise.</p>
-        </section>
-
-        <section id="privacy">
-            <h2><i class="fas fa-user-shield"></i> Privacy Policy</h2>
-            <p>Your privacy is our core mission. Our commitment is simple and absolute:</p>
-            <ul class="privacy-list">
-                <li><strong>No Data Logging:</strong> We do not track, collect, or store any data that could identify you or your activity.</li>
-                <li><strong>Zero Knowledge:</strong> Our infrastructure is designed to be inaccessible, ensuring your data is your own.</li>
-                <li><strong>Secured by Design:</strong> Security is the first step in every tool we create.</li>
-            </ul>
-        </section>
-
-        <section id="terms">
-            <h2><i class="fas fa-file-contract"></i> Terms of Service</h2>
-            <p>Silo services are provided "as is" with a focus on maximum security. We prohibit using our services for any illegal activities. Acceptance of these terms is automatic upon using our platform.</p>
-        </section>
-
-        <section id="contact">
-            <h2><i class="fas fa-envelope"></i> Contact</h2>
-            <p>For inquiries, support, or transparency reports, please contact our team at:</p>
-            <p><a href="mailto:support@silovpn.me" style="color: var(--accent); text-decoration: none;">support@silovpn.me</a></p>
-        </section>
-
-        <footer>
-            &copy; 2026 Silo | Next Generation Privacy. All Rights Reserved.
-        </footer>
+    <main>
+        <h1>Secure. Private. Fast.</h1>
+        <p>Welcome to SiloVPN. We provide a next-generation privacy infrastructure designed to protect your digital footprint. Our commitment to security ensures that your connection remains private, anonymous, and unrestricted.</p>
+        <p>Use the navigation menu to explore our legal documentation and support resources.</p>
     </main>
 
 </body>
