@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support — SiloVPN</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --accent: #0066FF;
+            --bg: #ffffff;
+            --sidebar-bg: #FBFBFD;
+            --text-dark: #1D1D1F;
+            --text-gray: #6E6E73;
+            --border: rgba(0,0,0,0.06);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- Sidebar (موحد لكل الصفحات) --- */
+        .sidebar {
+            width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
+            height: 100vh; position: fixed; padding: 4rem 2rem; display: flex;
+            flex-direction: column; z-index: 100;
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800;
+            color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem;
+        }
+        .brand span { color: var(--accent); }
+
+        .nav-section { margin-bottom: 2.5rem; }
+        .section-label {
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px;
+        }
+
+        .nav-item {
+            display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark);
+            text-decoration: none; font-weight: 500; border-radius: var(--radius);
+            transition: var(--transition); margin-bottom: 6px;
+        }
+
+        /* تمييز صفحة الدعم كصفحة نشطة */
+        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
+        .nav-item:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); transform: translateY(-2px); color: var(--accent); }
+        .nav-item i { width: 30px; font-size: 1.2rem; }
+        .nav-item .chevron { margin-left: auto; font-size: 0.7rem; opacity: 0.2; }
+
+        /* --- Main Content Area --- */
+        main {
+            margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%;
+            animation: fadeIn 0.8s var(--transition);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .page-header { margin-bottom: 4rem; }
+        .support-icon { color: var(--accent); font-size: 3rem; margin-bottom: 1.5rem; }
+
+        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; margin: 3.5rem 0 1.2rem; }
+
+        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+
+        /* بطاقة التواصل الفخمة */
+        .contact-card {
+            background: linear-gradient(135deg, #0066FF 0%, #0044AA 100%);
+            padding: 3rem; border-radius: 24px; color: white; margin: 3rem 0;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
+        }
+
+        .contact-info h3 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .contact-info p { color: rgba(255,255,255,0.8); margin-bottom: 0; font-size: 1rem; }
+
+        .email-btn {
+            background: white; color: var(--accent); padding: 16px 32px;
+            border-radius: 14px; text-decoration: none; font-weight: 700;
+            transition: var(--transition); display: flex; align-items: center;
+        }
+        .email-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .email-btn i { margin-right: 10px; }
+
+        /* الأسئلة الشائعة FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--border); padding: 1.5rem 0;
+        }
+        .faq-item h3 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-dark); }
+        .faq-item p { font-size: 1rem; margin-bottom: 0; }
+
+        .footer-note {
+            margin-top: 8rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            font-size: 0.9rem; color: var(--text-gray);
+        }
+
+        /* Google Play Button */
+        .google-play-area { margin-top: auto; padding-top: 2rem; }
+        .play-btn {
+            background: #000; color: #fff; padding: 16px 24px; border-radius: 20px;
+            text-decoration: none; display: flex; align-items: center; opacity: 0.8;
+            filter: grayscale(1); cursor: not-allowed;
+        }
+
+        @media (max-width: 1024px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: static; padding: 2.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+            main { margin-left: 0; padding: 4rem 2rem; }
+            .contact-card { flex-direction: column; text-align: center; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <a href="index.html" class="brand">Silo<span>VPN</span></a>
+
+        <div class="nav-section">
+            <div class="section-label">Legal Information</div>
+            <a href="privacy.html" class="nav-item">
+                <i class="fa-solid fa-shield-halved"></i> Privacy Policy <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+            <a href="terms.html" class="nav-item">
+                <i class="fa-solid fa-file-lines"></i> Terms of Service <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+        </div>
+
+        <div class="nav-section">
+            <div class="section-label">Help</div>
+            <a href="support.html" class="nav-item active">
+                <i class="fa-solid fa-circle-question"></i> Help & Support <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+            <a href="about.html" class="nav-item">
+                <i class="fa-solid fa-circle-info"></i> About <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+        </div>
+
+        <div class="google-play-area">
+            <a href="#" class="play-btn">
+                <i class="fab fa-google-play" style="font-size: 2rem; margin-right: 15px;"></i>
+                <div style="text-align: left;">
+                    <div style="font-size: 0.7rem; opacity: 0.6; font-weight: 500;">GET IT ON</div>
+                    <div style="font-weight: 600; font-size: 1.2rem;">Google Play</div>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="page-header">
+            <i class="fa-solid fa-headset support-icon"></i>
+            <h1>Help & Support</h1>
+            <p>Our dedicated team is here to ensure your SiloVPN experience is seamless and secure.</p>
+        </div>
+
+        <section>
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Contact Our Team</h3>
+                    <p>Expect a response within 24 hours.</p>
+                </div>
+                <a href="mailto:support@silovpn.me" class="email-btn">
+                    <i class="fa-solid fa-envelope"></i> Send Email
+                </a>
+            </div>
+
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>How do I start using SiloVPN?</h3>
+                <p>Simply download the app from Google Play, open it, and tap the central shield button. The app will automatically configure the best server using the WireGuard® protocol.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is my data really private?</h3>
+                <p>Yes. We operate under a strict no-logs policy, meaning we don't know who you are or what you do online. Your data is encrypted at the device level.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>I'm experiencing slow speeds. What should I do?</h3>
+                <p>Try switching to a different server location or restarting the app. Ensure you have a stable local internet connection for the best performance.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I use SiloVPN on multiple devices?</h3>
+                <p>SiloVPN is currently optimized for Android devices. Stay tuned for future updates across other platforms.</p>
+            </div>
+
+        </section>
+        
+        <div class="footer-note">
+            &copy; 2026 SiloVPN. All rights reserved.
+        </div>
+    </main>
+
+</body>
+</html>
