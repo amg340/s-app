@@ -16,7 +16,7 @@
             --text-dark: #1D1D1F;
             --text-gray: #6E6E73;
             --border: rgba(0,0,0,0.06);
-            --radius: 16px;
+            --radius: 20px;
             --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -30,161 +30,76 @@
             min-height: 100vh;
         }
 
-        /* --- Sidebar (موحد لكل الصفحات) --- */
+        /* --- Sidebar --- */
         .sidebar {
-            width: 320px;
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
-            height: 100vh;
-            position: fixed;
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
+            width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
+            height: 100vh; position: fixed; padding: 4rem 2rem; display: flex;
+            flex-direction: column; z-index: 100;
         }
 
         .brand {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            text-decoration: none;
-            letter-spacing: -1.5px;
-            margin-bottom: 4rem;
+            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800;
+            color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem;
         }
-
         .brand span { color: var(--accent); }
 
         .nav-section { margin-bottom: 2.5rem; }
-        
         .section-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-            padding-left: 12px;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px;
         }
 
         .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 14px 18px;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            margin-bottom: 6px;
+            display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark);
+            text-decoration: none; font-weight: 500; border-radius: var(--radius);
+            transition: var(--transition); margin-bottom: 6px;
         }
 
-        /* تمييز صفحة الشروط كصفحة نشطة حالياً */
-        .nav-item.active {
-            background: #ffffff;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-            color: var(--accent);
-        }
-
-        .nav-item:hover {
-            background: #ffffff;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-            transform: translateY(-2px);
-            color: var(--accent);
-        }
-
+        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
+        .nav-item:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); transform: translateY(-2px); color: var(--accent); }
         .nav-item i { width: 30px; font-size: 1.2rem; }
         .nav-item .chevron { margin-left: auto; font-size: 0.7rem; opacity: 0.2; }
 
         /* --- Main Content Area --- */
         main {
-            margin-left: 320px;
-            flex: 1;
-            padding: 8rem 12% 6rem 12%;
+            margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%;
             animation: fadeIn 0.8s var(--transition);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .page-header {
-            margin-bottom: 4rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 2rem;
-        }
+        .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+        .last-updated { color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; }
 
-        .terms-icon {
-            color: var(--accent);
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; margin: 3.5rem 0 1.2rem; color: var(--text-dark); display: flex; align-items: center; }
+        h2 i { margin-right: 12px; color: var(--accent); font-size: 1.3rem; }
 
-        h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-        }
+        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
 
-        h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 3.5rem 0 1.2rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-        }
-
-        p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .terms-list {
-            list-style: none;
-            margin: 1.5rem 0 2.5rem;
-        }
-
+        .terms-list { list-style: none; margin: 1.5rem 0 2.5rem; }
         .terms-list li {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            line-height: 1.7;
+            position: relative; padding-left: 2rem; margin-bottom: 1rem;
+            color: var(--text-gray); font-size: 1.1rem; line-height: 1.7;
         }
 
-        .terms-list li::before {
-            content: "\f05e"; /* أيقونة المنع من FontAwesome */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: #FF3B30; /* أحمر للتنبيه والمنع */
-            position: absolute;
-            left: 0;
-            font-size: 1.1rem;
+        /* أيقونات المنع للأقسام المحظورة */
+        .prohibited-list li::before {
+            content: "\f05e"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            color: #FF3B30; position: absolute; left: 0; font-size: 1.1rem;
         }
 
-        /* تنسيق خاص لقائمة المسؤوليات */
+        /* أيقونات الالتزام للأقسام العادية */
         .check-list li::before {
-            content: "\f00c"; /* أيقونة الصح */
-            color: var(--accent);
+            content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            color: var(--accent); position: absolute; left: 0; font-size: 1.1rem;
         }
 
         .footer-note {
-            margin-top: 8rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.9rem;
-            color: var(--text-gray);
+            margin-top: 8rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            font-size: 0.9rem; color: var(--text-gray);
         }
 
-        /* Google Play Button */
         .google-play-area { margin-top: auto; padding-top: 2rem; }
         .play-btn {
             background: #000; color: #fff; padding: 16px 24px; border-radius: 20px;
@@ -238,44 +153,50 @@
 
     <main>
         <div class="page-header">
-            <i class="fa-solid fa-file-contract terms-icon"></i>
+            <div class="last-updated">Last Updated: March 2026</div>
             <h1>Terms of Service</h1>
-            <p>By using SiloVPN, you agree to comply with the following essential terms.</p>
+            <p>By using <strong>SiloVPN</strong>, you agree to comply with the following essential terms and conditions.</p>
         </div>
 
         <section>
-            <h2>1. Acceptable Use</h2>
-            <p>Our goal is a secure internet for all. You agree <strong>NOT</strong> to use SiloVPN for:</p>
-            <ul class="terms-list">
-                <li>Illegal activities of any kind in any jurisdiction.</li>
-                <li>Hacking, unauthorized access, or digital intrusion.</li>
-                <li>Distribution of malware, viruses, or malicious software.</li>
-                <li>Abuse or disruption of our or any third-party network systems.</li>
+            <h2><i class="fa-solid fa-user-check"></i> 1. Eligibility</h2>
+            <p>You must be at least <strong>18 years old</strong> (or the legal age of majority in your jurisdiction) to use SiloVPN. By using the service, you confirm that you meet this requirement and possess the legal capacity to enter into this agreement.</p>
+
+            <h2><i class="fa-solid fa-hand-dots"></i> 2. Acceptable Use</h2>
+            <p>You agree <strong>NOT</strong> to use SiloVPN for any of the following prohibited activities:</p>
+            <ul class="terms-list prohibited-list">
+                <li>Illegal activities in any local, state, or international jurisdiction.</li>
+                <li>Hacking, unauthorized access, or digital intrusion into any system.</li>
+                <li>Distribution of malware, viruses, or any harmful software.</li>
+                <li>Abuse, disruption, or interference with any network or service provider.</li>
             </ul>
 
-            <h2>2. Service Availability</h2>
-            <p>We aim to provide a premium and stable service, but please note:</p>
+            <h2><i class="fa-solid fa-server"></i> 3. Service Availability & Subscriptions</h2>
             <ul class="terms-list check-list">
-                <li>We do not guarantee 100% uptime at all times.</li>
-                <li>Servers may change location or become temporarily unavailable for maintenance.</li>
+                <li>We strive to provide a high-quality service, but do not guarantee 100% uninterrupted availability.</li>
+                <li>Servers may change location or become temporarily offline for maintenance.</li>
+                <li>Subscription payments are processed exclusively via <strong>Google Play</strong> and are subject to their specific policies.</li>
             </ul>
 
-            <h2>3. No Warranty</h2>
-            <p>The SiloVPN service is provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis, without warranties of any kind, either express or implied.</p>
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> 4. No Warranty</h2>
+            <p>The SiloVPN service is provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis without warranties of any kind, whether express or implied.</p>
 
-            <h2>4. Limitation of Liability</h2>
-            <p>To the maximum extent permitted by law, SiloVPN and its team are not responsible for:</p>
+            <h2><i class="fa-solid fa-scale-balanced"></i> 5. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, SiloVPN and its team shall not be liable for:</p>
             <ul class="terms-list check-list">
-                <li>Any form of data loss or encryption issues.</li>
-                <li>Service interruptions beyond our direct control.</li>
-                <li>Misuse of the application by the user.</li>
+                <li>Any data loss or connection issues during use.</li>
+                <li>Service interruptions beyond our direct technical control.</li>
+                <li>Any damages resulting from the misuse of the application.</li>
             </ul>
 
-            <h2>5. Termination</h2>
-            <p>We reserve the right to restrict, suspend, or terminate access to our services if the application is misused or if these terms are violated.</p>
+            <h2><i class="fa-solid fa-user-slash"></i> 6. Termination</h2>
+            <p>We reserve the right to restrict, suspend, or terminate access to the service if these terms are violated or if the service is found to be misused in any way.</p>
 
-            <h2>6. User Responsibility</h2>
-            <p>You are solely responsible for ensuring that your use of SiloVPN complies with your <strong>local laws</strong>. The responsibility of legal compliance rests entirely with the user.</p>
+            <h2><i class="fa-solid fa-gavel"></i> 7. User Responsibility</h2>
+            <p>You are solely responsible for ensuring that your use of SiloVPN complies with all <strong>applicable laws</strong> and regulations in your current jurisdiction.</p>
+
+            <h2><i class="fa-solid fa-pen-to-square"></i> 8. Changes to Terms</h2>
+            <p>We reserve the right to update these Terms of Service at any time. Any changes will be reflected within the app or on this official website.</p>
         </section>
         
         <div class="footer-note">
