@@ -1,37 +1,295 @@
-SiloVPN Privacy Policy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — SiloVPN</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-At SiloVPN, we respect your privacy and are committed to protecting it.
+    <style>
+        :root {
+            --accent: #0066FF;
+            --bg: #ffffff;
+            --sidebar-bg: #FBFBFD;
+            --text-dark: #1D1D1F;
+            --text-gray: #6E6E73;
+            --border: rgba(0,0,0,0.06);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-1. Information We Do Not Collect
-We do NOT collect or store:
-- Browsing activity
-- Connection logs
-- IP addresses
-- DNS queries
-- Traffic data
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
-We operate under a strict no-logs policy.
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            display: flex;
+            min-height: 100vh;
+        }
 
-2. Limited Information We May Collect
-To maintain and improve the service, we may collect:
-- Basic app diagnostics (such as crash reports)
-- Device type and operating system version
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 320px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
 
-This data is non-identifiable and used only for technical improvements.
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: -1.5px;
+            margin-bottom: 4rem;
+        }
 
-3. Use of Information
-Collected data is used only to:
-- Improve app performance
-- Fix bugs
-- Maintain service stability
+        .brand span { color: var(--accent); }
 
-We do NOT sell, trade, or share user data with third parties.
+        .nav-section { margin-bottom: 2.5rem; }
+        
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            padding-left: 12px;
+        }
 
-4. Security
-We use strong encryption and secure protocols to protect your data. However, no system is completely secure.
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            margin-bottom: 6px;
+        }
 
-5. Third-Party Services
-SiloVPN may use limited third-party services (such as analytics or hosting), which have their own privacy policies.
+        /* تمييز صفحة الخصوصية كصفحة نشطة */
+        .nav-item.active {
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            color: var(--accent);
+        }
 
-6. Changes to This Policy
-We may update this Privacy Policy from time to time. Updates will be reflected inside the app.
+        .nav-item:hover {
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+            color: var(--accent);
+        }
+
+        .nav-item i { width: 30px; font-size: 1.2rem; }
+        .nav-item .chevron { margin-left: auto; font-size: 0.7rem; opacity: 0.2; }
+
+        /* --- Main Content --- */
+        main {
+            margin-left: 320px;
+            flex: 1;
+            padding: 8rem 12% 6rem 12%;
+            animation: fadeIn 0.8s var(--transition);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header {
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        .last-updated {
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 3.5rem 0 1.2rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-list {
+            list-style: none;
+            margin: 1.5rem 0 2.5rem;
+        }
+
+        .policy-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .policy-list li::before {
+            content: "\f058"; /* أيقونة الصح من FontAwesome */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .no-logs-badge {
+            display: inline-block;
+            background: #EBF4FF;
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .footer-note {
+            margin-top: 8rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Google Play Button */
+        .google-play-area { margin-top: auto; padding-top: 2rem; }
+        .play-btn {
+            background: #000; color: #fff; padding: 16px 24px; border-radius: 20px;
+            text-decoration: none; display: flex; align-items: center; opacity: 0.8;
+            filter: grayscale(1); cursor: not-allowed;
+        }
+
+        @media (max-width: 1024px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: static; padding: 2.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+            main { margin-left: 0; padding: 4rem 2rem; }
+            h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <a href="index.html" class="brand">Silo<span>VPN</span></a>
+
+        <div class="nav-section">
+            <div class="section-label">Legal Information</div>
+            <a href="privacy.html" class="nav-item active">
+                <i class="fa-solid fa-shield-halved"></i> Privacy Policy <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+            <a href="terms.html" class="nav-item">
+                <i class="fa-solid fa-file-lines"></i> Terms of Service <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+        </div>
+
+        <div class="nav-section">
+            <div class="section-label">Help</div>
+            <a href="support.html" class="nav-item">
+                <i class="fa-solid fa-circle-question"></i> Help & Support <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+            <a href="about.html" class="nav-item">
+                <i class="fa-solid fa-circle-info"></i> About <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+        </div>
+
+        <div class="google-play-area">
+            <a href="#" class="play-btn">
+                <i class="fab fa-google-play" style="font-size: 2rem; margin-right: 15px;"></i>
+                <div style="text-align: left;">
+                    <div style="font-size: 0.7rem; opacity: 0.6; font-weight: 500;">GET IT ON</div>
+                    <div style="font-weight: 600; font-size: 1.2rem;">Google Play</div>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="page-header">
+            <div class="last-updated">Last Updated: March 2026</div>
+            <h1>Privacy Policy</h1>
+            <p>At <strong>SiloVPN</strong>, we respect your privacy and are committed to protecting it.</p>
+        </div>
+
+        <section>
+            <h2>1. Information We Do Not Collect</h2>
+            <p>We do <strong>NOT</strong> collect or store the following sensitive data:</p>
+            <ul class="policy-list">
+                <li>Browsing activity and history</li>
+                <li>Connection logs or session durations</li>
+                <li>Original or assigned IP addresses</li>
+                <li>DNS queries or destination traffic</li>
+                <li>Personal traffic data content</li>
+            </ul>
+            <div class="no-logs-badge">We operate under a strict no-logs policy.</div>
+
+            <h2>2. Limited Information We May Collect</h2>
+            <p>To maintain and improve the service, we may collect minimal technical data:</p>
+            <ul class="policy-list">
+                <li>Basic app diagnostics (such as crash reports)</li>
+                <li>Device type and operating system version</li>
+            </ul>
+            <p>This data is <strong>non-identifiable</strong> and used only for technical improvements to ensure SiloVPN works perfectly on all devices.</p>
+
+            <h2>3. Use of Information</h2>
+            <p>Collected data is used only to improve app performance, fix bugs, and maintain service stability.</p>
+            <p><strong>Strict Guarantee:</strong> We do NOT sell, trade, or share any user data with third parties.</p>
+
+            <h2>4. Security</h2>
+            <p>We use industry-standard strong encryption and secure protocols to protect your data. However, as an engineering reality, no system is completely secure, but we strive for maximum protection.</p>
+
+            <h2>5. Third-Party Services</h2>
+            <p>SiloVPN may use limited third-party services (such as analytics or hosting providers) to ensure smooth operation. These partners have their own privacy policies.</p>
+
+            <h2>6. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any updates will be reflected directly inside the app to keep you informed.</p>
+        </section>
+        
+        <div class="footer-note">
+            &copy; 2026 SiloVPN. All rights reserved.
+        </div>
+    </main>
+
+</body>
+</html>
