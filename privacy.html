@@ -16,7 +16,7 @@
             --text-dark: #1D1D1F;
             --text-gray: #6E6E73;
             --border: rgba(0,0,0,0.06);
-            --radius: 16px;
+            --radius: 20px;
             --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -30,170 +30,73 @@
             min-height: 100vh;
         }
 
-        /* --- Sidebar --- */
+        /* --- Sidebar (موحد لكل الصفحات) --- */
         .sidebar {
-            width: 320px;
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
-            height: 100vh;
-            position: fixed;
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
+            width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
+            height: 100vh; position: fixed; padding: 4rem 2rem; display: flex;
+            flex-direction: column; z-index: 100;
         }
 
         .brand {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            text-decoration: none;
-            letter-spacing: -1.5px;
-            margin-bottom: 4rem;
+            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800;
+            color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem;
         }
-
         .brand span { color: var(--accent); }
 
         .nav-section { margin-bottom: 2.5rem; }
-        
         .section-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-gray);
-            margin-bottom: 1rem;
-            padding-left: 12px;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px;
         }
 
         .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 14px 18px;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            margin-bottom: 6px;
+            display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark);
+            text-decoration: none; font-weight: 500; border-radius: var(--radius);
+            transition: var(--transition); margin-bottom: 6px;
         }
 
-        /* تمييز صفحة الخصوصية كصفحة نشطة */
-        .nav-item.active {
-            background: #ffffff;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-            color: var(--accent);
-        }
-
-        .nav-item:hover {
-            background: #ffffff;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-            transform: translateY(-2px);
-            color: var(--accent);
-        }
-
+        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
+        .nav-item:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); transform: translateY(-2px); color: var(--accent); }
         .nav-item i { width: 30px; font-size: 1.2rem; }
         .nav-item .chevron { margin-left: auto; font-size: 0.7rem; opacity: 0.2; }
 
-        /* --- Main Content --- */
+        /* --- Main Content Area --- */
         main {
-            margin-left: 320px;
-            flex: 1;
-            padding: 8rem 12% 6rem 12%;
+            margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%;
             animation: fadeIn 0.8s var(--transition);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .page-header {
-            margin-bottom: 4rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 2rem;
-        }
+        .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+        .last-updated { color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; }
 
-        .last-updated {
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; margin: 3.5rem 0 1.2rem; color: var(--text-dark); display: flex; align-items: center; }
+        h2 i { margin-right: 12px; color: var(--accent); font-size: 1.3rem; }
 
-        h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-        }
+        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
 
-        h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 3.5rem 0 1.2rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-        }
-
-        p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .policy-list {
-            list-style: none;
-            margin: 1.5rem 0 2.5rem;
-        }
-
+        .policy-list { list-style: none; margin: 1.5rem 0 2.5rem; }
         .policy-list li {
-            position: relative;
-            padding-left: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text-gray);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
+            position: relative; padding-left: 1.8rem; margin-bottom: 1rem;
+            color: var(--text-gray); font-size: 1.1rem; display: flex; align-items: center;
         }
-
         .policy-list li::before {
-            content: "\f058"; /* أيقونة الصح من FontAwesome */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--accent);
-            position: absolute;
-            left: 0;
-            font-size: 1.1rem;
+            content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            color: var(--accent); position: absolute; left: 0; font-size: 1.1rem;
         }
 
-        .no-logs-badge {
-            display: inline-block;
-            background: #EBF4FF;
-            color: var(--accent);
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 10px;
+        .highlight-box {
+            background: rgba(0, 102, 255, 0.05); border-radius: 16px; padding: 1.5rem;
+            border-left: 4px solid var(--accent); margin: 2rem 0;
         }
 
         .footer-note {
-            margin-top: 8rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.9rem;
-            color: var(--text-gray);
+            margin-top: 8rem; padding-top: 2rem; border-top: 1px solid var(--border);
+            font-size: 0.9rem; color: var(--text-gray);
         }
 
-        /* Google Play Button */
         .google-play-area { margin-top: auto; padding-top: 2rem; }
         .play-btn {
             background: #000; color: #fff; padding: 16px 24px; border-radius: 20px;
@@ -249,41 +152,48 @@
         <div class="page-header">
             <div class="last-updated">Last Updated: March 2026</div>
             <h1>Privacy Policy</h1>
-            <p>At <strong>SiloVPN</strong>, we respect your privacy and are committed to protecting it.</p>
+            <p>At <strong>SiloVPN</strong>, we respect your privacy and are committed to protecting it. By using SiloVPN, you agree to the terms outlined in this policy.</p>
         </div>
 
         <section>
-            <h2>1. Information We Do Not Collect</h2>
-            <p>We do <strong>NOT</strong> collect or store the following sensitive data:</p>
+            <h2><i class="fa-solid fa-gears"></i> 1. Use of VpnService</h2>
+            <p>SiloVPN utilizes the <strong>Android VpnService API</strong> to create a secure, encrypted tunnel for your internet traffic. This functionality is essential for providing core VPN features and is used solely for the purpose of securing your connection.</p>
+
+            <h2><i class="fa-solid fa-eye-slash"></i> 2. Information We Do Not Collect</h2>
+            <div class="highlight-box">
+                <p><strong>Strict No-Logs Policy:</strong> We do NOT collect, store, or track the following:</p>
+            </div>
             <ul class="policy-list">
-                <li>Browsing activity and history</li>
-                <li>Connection logs or session durations</li>
-                <li>Original or assigned IP addresses</li>
-                <li>DNS queries or destination traffic</li>
-                <li>Personal traffic data content</li>
+                <li>Browsing activity or websites visited.</li>
+                <li>Connection timestamps or session durations.</li>
+                <li>Original or assigned IP addresses.</li>
+                <li>DNS queries or destination traffic content.</li>
             </ul>
-            <div class="no-logs-badge">We operate under a strict no-logs policy.</div>
 
-            <h2>2. Limited Information We May Collect</h2>
-            <p>To maintain and improve the service, we may collect minimal technical data:</p>
+            <h2><i class="fa-solid fa-user-slash"></i> 3. Personal Data</h2>
+            <p>SiloVPN does <strong>NOT</strong> collect any personally identifiable information (PII) from our users. We believe in absolute anonymity.</p>
+
+            <h2><i class="fa-solid fa-microchip"></i> 4. Limited Technical Data</h2>
+            <p>To maintain and improve service quality, we may collect minimal technical data such as:</p>
             <ul class="policy-list">
-                <li>Basic app diagnostics (such as crash reports)</li>
-                <li>Device type and operating system version</li>
+                <li>Basic app diagnostics (e.g., crash reports).</li>
+                <li>Device type and operating system version.</li>
             </ul>
-            <p>This data is <strong>non-identifiable</strong> and used only for technical improvements to ensure SiloVPN works perfectly on all devices.</p>
+            <p>This data is anonymized, non-identifiable, and used strictly for technical performance enhancements.</p>
 
-            <h2>3. Use of Information</h2>
-            <p>Collected data is used only to improve app performance, fix bugs, and maintain service stability.</p>
-            <p><strong>Strict Guarantee:</strong> We do NOT sell, trade, or share any user data with third parties.</p>
+            <h2><i class="fa-solid fa-circle-check"></i> 5. Use of Information</h2>
+            <p>Any collected data is used strictly to improve application performance, fix bugs, and maintain service stability.</p>
+            <p><strong>Zero-Sharing:</strong> We do NOT sell, trade, or share user data with any third parties.</p>
 
-            <h2>4. Security</h2>
-            <p>We use industry-standard strong encryption and secure protocols to protect your data. However, as an engineering reality, no system is completely secure, but we strive for maximum protection.</p>
+            <h2><i class="fa-solid fa-lock"></i> 6. Security</h2>
+            <p>We implement industry-standard encryption and secure protocols to protect user data and ensure all communications remain safe and private.</p>
 
-            <h2>5. Third-Party Services</h2>
-            <p>SiloVPN may use limited third-party services (such as analytics or hosting providers) to ensure smooth operation. These partners have their own privacy policies.</p>
+            <h2><i class="fa-solid fa-envelope"></i> 7. Data Deletion & Contact</h2>
+            <p>If you have any questions or wish to request data deletion, you can contact our support team at:</p>
+            <p><a href="mailto:support@silovpn.me" style="color: var(--accent); font-weight: 600; text-decoration: none;">support@silovpn.me</a></p>
 
-            <h2>6. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. Any updates will be reflected directly inside the app to keep you informed.</p>
+            <h2><i class="fa-solid fa-clock-rotate-left"></i> 8. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be reflected directly within the application.</p>
         </section>
         
         <div class="footer-note">
