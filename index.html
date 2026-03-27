@@ -10,9 +10,9 @@
 
     <style>
         :root {
-            --accent: #0066FF; /* أزرق بريميوم */
+            --accent: #0066FF;
             --bg: #ffffff;
-            --sidebar-bg: #FBFBFD; /* رمادي خفيف جداً (Apple Style) */
+            --sidebar-bg: #FBFBFD;
             --text-dark: #1D1D1F;
             --text-gray: #6E6E73;
             --border: rgba(0,0,0,0.06);
@@ -30,7 +30,7 @@
             min-height: 100vh;
         }
 
-        /* --- القائمة الجانبية: Sidebar --- */
+        /* --- Sidebar --- */
         .sidebar {
             width: 320px;
             background: var(--sidebar-bg);
@@ -89,7 +89,7 @@
         .nav-item i { width: 30px; font-size: 1.2rem; }
         .nav-item .chevron { margin-left: auto; font-size: 0.7rem; opacity: 0.2; }
 
-        /* --- المحتوى الرئيسي: Main Content --- */
+        /* --- Main Content --- */
         main {
             margin-left: 320px;
             flex: 1;
@@ -102,7 +102,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* محتوى الصفحة الرئيسية الجديد */
+        /* المحتوى المحدث بدون WireGuard */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -135,7 +135,6 @@
             margin-bottom: 4rem;
         }
 
-        /* شبكة المميزات */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -147,7 +146,6 @@
         .feature-item h3 { font-family: 'Outfit', sans-serif; font-size: 1.25rem; margin-bottom: 0.6rem; }
         .feature-item p { font-size: 0.95rem; line-height: 1.6; color: var(--text-gray); }
 
-        /* ميثاق الخصوصية */
         .privacy-manifesto {
             background: #FBFBFD;
             padding: 3rem;
@@ -158,7 +156,7 @@
         .privacy-manifesto h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 1.2rem; }
         .privacy-manifesto p { font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); }
 
-        /* زر جوجل بلاي */
+        /* Google Play Area */
         .google-play-area { margin-top: auto; padding-top: 2rem; }
         .play-btn {
             background: #000; color: #fff; padding: 16px 24px; border-radius: 20px;
@@ -175,7 +173,6 @@
             color: var(--text-gray);
         }
 
-        /* Responsive Design */
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: static; padding: 2.5rem; border-right: none; border-bottom: 1px solid var(--border); }
@@ -223,11 +220,11 @@
     <main>
         <div class="hero-section">
             <div class="status-badge">
-                <i class="fa-solid fa-bolt-lightning"></i> Powered by WireGuard®
+                <i class="fa-solid fa-bolt-lightning"></i> High-Speed Infrastructure
             </div>
             <h1>Elite Privacy.<br><span>Digital Freedom.</span></h1>
             <p class="hero-text">
-                SiloVPN isn't just a tunnel; it's a digital sanctuary. We’ve stripped away the complexity of traditional VPNs to give you a lightweight, invisible, and elite-grade security layer for the modern web.
+                SiloVPN isn't just a tunnel; it's a digital sanctuary. We’ve stripped away the complexity of traditional networks to give you a lightweight, invisible, and elite-grade security layer for the modern web.
             </p>
         </div>
 
@@ -240,7 +237,7 @@
             <div class="feature-item">
                 <i class="fa-solid fa-shield-cat"></i>
                 <h3>Military Grade</h3>
-                <p>Encrypted with AES-256 and the WireGuard® protocol for unmatched data integrity and performance.</p>
+                <p>Encrypted with AES-256 and next-generation protocols for unmatched data integrity and performance.</p>
             </div>
             <div class="feature-item">
                 <i class="fa-solid fa-globe-americas"></i>
