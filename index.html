@@ -3,143 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiloVPN — Pure Privacy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>SiloVPN — Private. Secure. Elite.</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         :root {
-            --primary: #007AFF; /* أزرق آبل الاحترافي */
+            --accent: #0066FF; /* أزرق بريميوم */
             --bg: #ffffff;
-            --sidebar-bg: rgba(250, 250, 252, 0.8);
-            --text-main: #1d1d1f;
-            --text-muted: #86868b;
-            --glass: rgba(255, 255, 255, 0.7);
-            --border: rgba(0, 0, 0, 0.05);
+            --sidebar-bg: #FBFBFD; /* رمادي خفيف جداً (Apple Style) */
+            --text-dark: #1D1D1F;
+            --text-gray: #6E6E73;
+            --border: rgba(0,0,0,0.06);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
-            color: var(--text-main);
+            color: var(--text-dark);
             display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Sidebar: Glassmorphism Effect --- */
+        /* --- القائمة الجانبية: Sidebar --- */
         .sidebar {
-            width: 300px;
+            width: 320px;
             background: var(--sidebar-bg);
-            backdrop-filter: blur(20px); /* تأثير الزجاج الضبابي */
-            -webkit-backdrop-filter: blur(20px);
             border-right: 1px solid var(--border);
             height: 100vh;
             position: fixed;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             display: flex;
             flex-direction: column;
             z-index: 100;
         }
 
         .brand {
+            font-family: 'Outfit', sans-serif;
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--text-main);
+            color: var(--text-dark);
+            text-decoration: none;
             letter-spacing: -1.5px;
             margin-bottom: 4rem;
             display: flex;
             align-items: center;
-            text-decoration: none;
         }
 
-        .brand span { color: var(--primary); }
+        .brand span { color: var(--accent); }
 
-        .nav-group { margin-bottom: 2.5rem; }
-        .group-label {
-            font-size: 0.7rem;
+        .nav-section { margin-bottom: 2.5rem; }
+        
+        .section-label {
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--text-muted);
-            margin-bottom: 1.2rem;
-            padding-left: 10px;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            padding-left: 12px;
         }
 
-        .nav-link {
+        .nav-item {
             display: flex;
             align-items: center;
             padding: 14px 18px;
-            color: var(--text-main);
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 500;
-            border-radius: 14px;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            margin-bottom: 4px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            margin-bottom: 6px;
         }
 
-        .nav-link:hover {
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-            transform: scale(1.02);
-            color: var(--primary);
+        .nav-item:hover {
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+            color: var(--accent);
         }
 
-        .nav-link i { width: 28px; font-size: 1.2rem; opacity: 0.8; }
-        .nav-link .fa-chevron-right { margin-left: auto; font-size: 0.7rem; opacity: 0.3; }
+        .nav-item i { width: 30px; font-size: 1.2rem; }
+        .nav-item .chevron { margin-left: auto; font-size: 0.7rem; opacity: 0.2; }
 
-        /* --- Main Content Area --- */
+        /* --- المحتوى الرئيسي: Main Content --- */
         main {
-            margin-left: 300px;
+            margin-left: 320px;
             flex: 1;
-            padding: 6rem 10%;
-            animation: fadeIn 1s ease-out;
+            padding: 8rem 10% 4rem 10%;
+            animation: slideUp 0.8s var(--transition);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 2rem; }
-        p { font-size: 1.2rem; line-height: 1.7; color: var(--text-muted); max-width: 650px; }
-
-        /* --- Premium Play Store Button --- */
-        .play-store { margin-top: auto; padding-top: 2rem; }
-        .btn-play {
-            background: #000;
-            color: #fff;
-            padding: 14px 24px;
-            border-radius: 16px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s;
-            opacity: 0.8;
-            filter: grayscale(100%);
-            cursor: not-allowed;
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2.5px;
+            line-height: 1.1;
+            margin-bottom: 2.5rem;
         }
 
-        .btn-play:hover { opacity: 1; transform: translateY(-2px); }
-
-        /* --- Footer --- */
-        .footer {
-            margin-top: 6rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .hero-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+            max-width: 600px;
             font-weight: 400;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
+        /* --- زر جوجل بلاي الفخم --- */
+        .google-play-area { margin-top: auto; padding-top: 2rem; }
+        .play-btn {
+            background: #000;
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            opacity: 0.8;
+            filter: grayscale(1);
+            cursor: not-allowed;
+        }
+
+        .play-btn:hover { opacity: 1; transform: scale(1.02); }
+
+        .footer-note {
+            margin-top: 8rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
             body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: static; padding: 2rem; }
-            main { margin-left: 0; padding: 4rem 1.5rem; }
-            h1 { font-size: 2.5rem; }
+            .sidebar { width: 100%; height: auto; position: static; padding: 2.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+            main { margin-left: 0; padding: 4rem 2rem; }
+            h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -148,42 +161,42 @@
     <aside class="sidebar">
         <a href="index.html" class="brand">Silo<span>VPN</span></a>
 
-        <div class="nav-group">
-            <div class="group-label">Legal Information</div>
-            <a href="privacy.html" class="nav-link">
-                <i class="fa-solid fa-shield-halved"></i> Privacy Policy <i class="fa-solid fa-chevron-right"></i>
+        <div class="nav-section">
+            <div class="section-label">Legal Information</div>
+            <a href="privacy.html" class="nav-item">
+                <i class="fa-solid fa-shield-halved"></i> Privacy Policy <i class="fa-solid fa-chevron-right chevron"></i>
             </a>
-            <a href="terms.html" class="nav-link">
-                <i class="fa-solid fa-file-lines"></i> Terms of Service <i class="fa-solid fa-chevron-right"></i>
-            </a>
-        </div>
-
-        <div class="nav-group">
-            <div class="group-label">Help</div>
-            <a href="support.html" class="nav-link">
-                <i class="fa-solid fa-circle-question"></i> Help & Support <i class="fa-solid fa-chevron-right"></i>
-            </a>
-            <a href="about.html" class="nav-link">
-                <i class="fa-solid fa-circle-info"></i> About <i class="fa-solid fa-chevron-right"></i>
+            <a href="terms.html" class="nav-item">
+                <i class="fa-solid fa-file-lines"></i> Terms of Service <i class="fa-solid fa-chevron-right chevron"></i>
             </a>
         </div>
 
-        <div class="play-store">
-            <a href="#" class="btn-play">
-                <i class="fab fa-google-play" style="font-size: 1.8rem; margin-right: 15px;"></i>
+        <div class="nav-section">
+            <div class="section-label">Help</div>
+            <a href="support.html" class="nav-item">
+                <i class="fa-solid fa-circle-question"></i> Help & Support <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+            <a href="about.html" class="nav-item">
+                <i class="fa-solid fa-circle-info"></i> About <i class="fa-solid fa-chevron-right chevron"></i>
+            </a>
+        </div>
+
+        <div class="google-play-area">
+            <a href="#" class="play-btn">
+                <i class="fab fa-google-play" style="font-size: 2rem; margin-right: 15px;"></i>
                 <div style="text-align: left;">
-                    <div style="font-size: 0.65rem; font-weight: 400; opacity: 0.7;">GET IT ON</div>
-                    <div style="font-weight: 600; font-size: 1.1rem; letter-spacing: -0.5px;">Google Play</div>
+                    <div style="font-size: 0.7rem; opacity: 0.6; font-weight: 500;">GET IT ON</div>
+                    <div style="font-weight: 600; font-size: 1.2rem; letter-spacing: -0.5px;">Google Play</div>
                 </div>
             </a>
         </div>
     </aside>
 
     <main>
-        <h1>Elite Privacy.<br>Unmatched Speed.</h1>
-        <p>Experience the web without boundaries. SiloVPN offers a premium, encrypted gateway to the internet, ensuring your identity remains invisible and your data stays yours.</p>
+        <h1>The internet.<br>Unlocked. Secure.</h1>
+        <p class="hero-text">Experience true digital freedom with SiloVPN. Encrypt your connection, mask your identity, and access the global web with elite-grade security infrastructure.</p>
         
-        <div class="footer">
+        <div class="footer-note">
             &copy; 2026 SiloVPN. All rights reserved.
         </div>
     </main>
