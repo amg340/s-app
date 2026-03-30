@@ -18,91 +18,81 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-        /* --- الهيدر الاحترافي (الاسم يسار | المنيو يمين) --- */
+        /* --- Global Header (Standard UI) --- */
         .header {
-            width: 100%; 
-            padding: 1.2rem 1.5rem; 
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px); 
-            border-bottom: 1px solid var(--border);
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            z-index: 1500;
-            display: flex; 
-            justify-content: space-between; /* يوزع العناصر بين أقصى اليسار وأقصى اليمين */
-            align-items: center;
+            width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; left: 0; z-index: 1500;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand { 
-            font-family: 'Outfit', sans-serif; 
-            font-size: 1.5rem; 
-            font-weight: 800; 
-            color: var(--text-dark); 
-            text-decoration: none; 
-            letter-spacing: -1px; 
-        }
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
         .brand span { color: var(--accent); }
 
         .menu-toggle {
-            background: var(--sidebar-bg); 
-            border: 1px solid var(--border);
-            width: 46px; 
-            height: 46px; 
-            border-radius: 14px; 
-            cursor: pointer;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 1.2rem;
-            transition: var(--transition);
+            background: var(--sidebar-bg); border: 1px solid var(--border);
+            width: 46px; height: 46px; border-radius: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: var(--transition);
         }
+        .menu-toggle:active { transform: scale(0.9); }
 
-        /* --- القائمة الجانبية (يمين) --- */
+        /* --- Right Sidebar --- */
         .sidebar {
-            width: 300px; 
-            background: var(--sidebar-bg); 
-            border-left: 1px solid var(--border);
-            height: 100vh; 
-            position: fixed; 
-            right: 0; 
-            top: 0; 
-            padding: 3rem 2rem;
-            display: flex; 
-            flex-direction: column; 
-            z-index: 2000; 
-            transform: translateX(100%); 
-            transition: var(--transition);
+            width: 300px; background: var(--sidebar-bg); border-left: 1px solid var(--border);
+            height: 100vh; position: fixed; right: 0; top: 0; padding: 3rem 2rem;
+            display: flex; flex-direction: column; z-index: 2000; 
+            transform: translateX(100%); transition: var(--transition);
         }
         .sidebar.active { transform: translateX(0); box-shadow: -20px 0 60px rgba(0,0,0,0.05); }
 
         .nav-section { margin-bottom: 2.5rem; }
         .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-gray); margin-bottom: 1.2rem; letter-spacing: 1px; }
         .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: 18px; transition: var(--transition); margin-bottom: 6px; }
-        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(-8px); }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
         .nav-item i { width: 30px; font-size: 1.1rem; }
 
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 1800; backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
 
-        /* --- المحتوى الرئيسي --- */
+        /* --- Main Hero Area --- */
         main { width: 100%; padding: 8rem 1.5rem 4rem 1.5rem; max-width: 1200px; margin: 0 auto; }
-        .hero { text-align: center; margin-bottom: 5rem; }
+
+        .hero { text-align: center; margin-bottom: 5rem; animation: fadeInUp 1s var(--transition); }
         .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 102, 255, 0.06); color: var(--accent); padding: 10px 20px; border-radius: 100px; font-weight: 700; font-size: 0.85rem; margin-bottom: 2rem; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.2rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -3px; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero h1 span { color: var(--accent); }
-        .hero p { font-size: 1.15rem; color: var(--text-gray); line-height: 1.6; max-width: 700px; margin: 0 auto 3.5rem auto; }
+        
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 1.5rem; }
+        .hero h1 span { background: linear-gradient(135deg, var(--accent), #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2rem; color: var(--text-gray); line-height: 1.6; max-width: 700px; margin: 0 auto 3rem auto; }
 
-        /* المميزات */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 4rem; }
-        .f-card { background: #FBFBFD; border: 1px solid var(--border); padding: 2.5rem; border-radius: var(--radius); transition: var(--transition); }
+        /* --- Features Grid --- */
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 4rem;
+        }
+
+        .f-card { 
+            background: #FBFBFD; border: 1px solid var(--border); padding: 2.5rem; border-radius: var(--radius); 
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
         .f-card:hover { transform: translateY(-10px); background: #ffffff; box-shadow: 0 30px 60px rgba(0,0,0,0.05); border-color: var(--accent); }
-        .f-icon { width: 60px; height: 60px; background: #ffffff; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent); margin-bottom: 1.5rem; }
+        
+        .f-icon { width: 60px; height: 60px; background: #ffffff; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent); margin-bottom: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.02); }
         .f-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 1rem; }
-        .f-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+        .f-card p { color: var(--text-gray); font-size: 1rem; line-height: 1.6; }
 
-        .encryption-box { margin-top: 6rem; background: var(--text-dark); color: white; padding: 3rem 2rem; border-radius: var(--radius); text-align: center; }
-        footer { text-align: center; margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-gray); font-size: 0.85rem; }
+        /* --- Encryption Banner --- */
+        .encryption-box { 
+            margin-top: 6rem; background: var(--text-dark); color: white; padding: 3rem 2rem; border-radius: var(--radius);
+            text-align: center; position: relative;
+        }
+        .encryption-box i { font-size: 3rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .encryption-box h2 { font-family: 'Outfit'; font-size: 2rem; margin-bottom: 1rem; }
+
+        footer { text-align: center; margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-gray); font-size: 0.9rem; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (min-width: 1025px) {
             .header { padding: 1.5rem 10%; }
@@ -127,6 +117,7 @@
             <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
             <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
         </div>
+        
         <div class="nav-section">
             <div class="section-label">Support & Info</div>
             <a href="support.html" class="nav-item"><i class="fa-solid fa-headset"></i> Help Center</a>
@@ -138,31 +129,33 @@
         <section class="hero">
             <div class="badge"><i class="fa-solid fa-vault"></i> Military Grade Infrastructure</div>
             <h1>The Internet.<br><span>Unlocked & Secure.</span></h1>
-            <p>SiloVPN is an engineering masterpiece designed for those who refuse to be tracked. Experience elite-grade encryption with the world's fastest protocols.</p>
+            <p>SiloVPN is an engineering masterpiece designed for those who refuse to be tracked. Experience elite-grade encryption with the world's fastest tunneling protocols.</p>
         </section>
 
         <div class="features-grid">
             <div class="f-card">
                 <div class="f-icon"><i class="fa-solid fa-ghost"></i></div>
                 <h3>Ghost Identity</h3>
-                <p>Become invisible. Our obfuscation technology masks your VPN traffic as normal web data, bypassing even the toughest firewalls.</p>
+                <p>Become invisible. Our proprietary obfuscation technology masks your VPN traffic as normal web data, bypassing even the toughest firewalls.</p>
             </div>
+
             <div class="f-card">
                 <div class="f-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
                 <h3>Hyper-Speed</h3>
-                <p>Powered by WireGuard®. Optimized for 4K streaming, lag-free gaming, and instant downloads without data caps.</p>
+                <p>Powered by WireGuard®. We’ve optimized our infrastructure for 4K streaming, lag-free gaming, and instant downloads without data caps.</p>
             </div>
+
             <div class="f-card">
                 <div class="f-icon"><i class="fa-solid fa-shield-cat"></i></div>
                 <h3>Elite Guard</h3>
-                <p>Encrypted with AES-256-GCM. Your data is encapsulated in a secure tunnel that supercomputers can't breach.</p>
+                <p>Encrypted with AES-256-GCM. Your data is encapsulated in a secure tunnel that even supercomputers can't breach. Absolute peace of mind.</p>
             </div>
         </div>
 
         <section class="encryption-box">
-            <i class="fa-solid fa-microchip" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;"></i>
-            <h2 style="font-family:'Outfit'; margin-bottom: 1rem;">Zero-Logs Architecture</h2>
-            <p style="color: rgba(255,255,255,0.7);">Our systems are designed to forget. We don't store your history, your IP, or your timestamps. Your online activity is strictly your business.</p>
+            <i class="fa-solid fa-microchip"></i>
+            <h2>Zero-Logs Architecture</h2>
+            <p style="color: rgba(255,255,255,0.7);">Our systems are designed to forget. We don't store your history, your IP, or your timestamps. What you do online is strictly your business.</p>
         </section>
 
         <footer>
