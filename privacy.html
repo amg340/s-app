@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — SiloVPN</title>
+    <title>Privacy Policy — SiloVPN Elite Privacy</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -69,27 +69,43 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
-        .last-updated { color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; }
+        .last-updated { color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; margin-bottom: 12px; display: block; }
 
         h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
-        h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; margin: 3.5rem 0 1.2rem; color: var(--text-dark); display: flex; align-items: center; }
-        h2 i { margin-right: 12px; color: var(--accent); font-size: 1.3rem; }
+        
+        /* تنسيق الأقسام الجمالي */
+        section { margin-bottom: 4rem; }
+        
+        h2 { 
+            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; 
+            margin: 3rem 0 1.5rem; color: var(--text-dark); display: flex; align-items: center; 
+        }
+        h2 i { margin-right: 15px; color: var(--accent); font-size: 1.4rem; background: rgba(0, 102, 255, 0.05); padding: 10px; border-radius: 12px; }
 
-        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+        p { font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
 
-        .policy-list { list-style: none; margin: 1.5rem 0 2.5rem; }
+        /* قائمة المميزات الاحترافية */
+        .policy-list { list-style: none; margin: 1.5rem 0; display: grid; gap: 12px; }
         .policy-list li {
-            position: relative; padding-left: 1.8rem; margin-bottom: 1rem;
-            color: var(--text-gray); font-size: 1.1rem; display: flex; align-items: center;
+            position: relative; padding-left: 2rem;
+            color: var(--text-gray); font-size: 1.05rem; display: flex; align-items: flex-start;
         }
         .policy-list li::before {
             content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900;
-            color: var(--accent); position: absolute; left: 0; font-size: 1.1rem;
+            color: var(--accent); position: absolute; left: 0; top: 4px; font-size: 1.1rem;
         }
 
-        .highlight-box {
-            background: rgba(0, 102, 255, 0.05); border-radius: 16px; padding: 1.5rem;
-            border-left: 4px solid var(--accent); margin: 2rem 0;
+        /* صندوق التمييز (VpnService & No-Logs) */
+        .highlight-card {
+            background: #FBFBFD; border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem;
+            margin: 2rem 0; border-left: 5px solid var(--accent);
+        }
+        .highlight-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); }
+        
+        .no-logs-badge {
+            display: inline-flex; align-items: center; background: #FF3B30; color: white;
+            padding: 6px 16px; border-radius: 100px; font-weight: 700; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;
         }
 
         .footer-note {
@@ -97,13 +113,7 @@
             font-size: 0.9rem; color: var(--text-gray);
         }
 
-        .google-play-area { margin-top: auto; padding-top: 2rem; }
-        .play-btn {
-            background: #000; color: #fff; padding: 16px 24px; border-radius: 20px;
-            text-decoration: none; display: flex; align-items: center; opacity: 0.8;
-            filter: grayscale(1); cursor: not-allowed;
-        }
-
+        /* Responsive Mobile */
         @media (max-width: 1024px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: static; padding: 2.5rem; border-right: none; border-bottom: 1px solid var(--border); }
@@ -118,7 +128,7 @@
         <a href="index.html" class="brand">Silo<span>VPN</span></a>
 
         <div class="nav-section">
-            <div class="section-label">Legal Information</div>
+            <div class="section-label">Legal</div>
             <a href="privacy.html" class="nav-item active">
                 <i class="fa-solid fa-shield-halved"></i> Privacy Policy <i class="fa-solid fa-chevron-right chevron"></i>
             </a>
@@ -128,72 +138,72 @@
         </div>
 
         <div class="nav-section">
-            <div class="section-label">Help</div>
+            <div class="section-label">Help Center</div>
             <a href="support.html" class="nav-item">
-                <i class="fa-solid fa-circle-question"></i> Help & Support <i class="fa-solid fa-chevron-right chevron"></i>
+                <i class="fa-solid fa-circle-question"></i> Support <i class="fa-solid fa-chevron-right chevron"></i>
             </a>
             <a href="about.html" class="nav-item">
                 <i class="fa-solid fa-circle-info"></i> About <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
-        </div>
-
-        <div class="google-play-area">
-            <a href="#" class="play-btn">
-                <i class="fab fa-google-play" style="font-size: 2rem; margin-right: 15px;"></i>
-                <div style="text-align: left;">
-                    <div style="font-size: 0.7rem; opacity: 0.6; font-weight: 500;">GET IT ON</div>
-                    <div style="font-weight: 600; font-size: 1.2rem;">Google Play</div>
-                </div>
             </a>
         </div>
     </aside>
 
     <main>
         <div class="page-header">
-            <div class="last-updated">Last Updated: March 2026</div>
+            <span class="last-updated">Last Updated: March 2026</span>
             <h1>Privacy Policy</h1>
-            <p>At <strong>SiloVPN</strong>, we respect your privacy and are committed to protecting it. By using SiloVPN, you agree to the terms outlined in this policy.</p>
+            <p>At <strong>SiloVPN</strong>, we believe that privacy is a fundamental human right. Our application is designed to be lightweight, secure, and transparent.</p>
         </div>
 
         <section>
-            <h2><i class="fa-solid fa-gears"></i> 1. Use of VpnService</h2>
-            <p>SiloVPN utilizes the <strong>Android VpnService API</strong> to create a secure, encrypted tunnel for your internet traffic. This functionality is essential for providing core VPN features and is used solely for the purpose of securing your connection.</p>
+            <h2><i class="fa-solid fa-gears"></i> 1. Introduction & Commitment</h2>
+            <p>This Privacy Policy explains how we process information and, more importantly, what we do <strong>NOT</strong> collect. By using SiloVPN, you consent to the practices described herein.</p>
 
-            <h2><i class="fa-solid fa-eye-slash"></i> 2. Information We Do Not Collect</h2>
-            <div class="highlight-box">
-                <p><strong>Strict No-Logs Policy:</strong> We do NOT collect, store, or track the following:</p>
+            <div class="highlight-card">
+                <h3><i class="fa-solid fa-microchip" style="background: none; padding: 0; margin-right: 10px;"></i> 2. Core Functionality: Android VpnService</h3>
+                <p>To provide its core functionality, SiloVPN utilizes the <strong>Android VpnService API</strong> to create a secure, encrypted tunnel at the system level for your internet traffic.</p>
+                <ul class="policy-list">
+                    <li><strong>Implementation:</strong> This tunnel ensures all data packets are encapsulated and protected from third-party interception.</li>
+                    <li><strong>Protocol:</strong> Powered by the <strong>WireGuard® protocol</strong>, providing high-speed performance and state-of-the-art cryptographic primitives.</li>
+                </ul>
             </div>
+
+            <h2><i class="fa-solid fa-eye-slash"></i> 3. Strict No-Logs Guarantee</h2>
+            <div class="no-logs-badge">Rigorous No-Logs Policy</div>
+            <p>We do NOT collect, store, or share your data. Our infrastructure is built to be blind to your activity:</p>
             <ul class="policy-list">
-                <li>Browsing activity or websites visited.</li>
-                <li>Connection timestamps or session durations.</li>
-                <li>Original or assigned IP addresses.</li>
-                <li>DNS queries or destination traffic content.</li>
+                <li><strong>Online Activity:</strong> No visibility into websites, apps, or content.</li>
+                <li><strong>Connection Identifiers:</strong> No logging of original IP, assigned IP, or timestamps.</li>
+                <li><strong>DNS Records:</strong> All DNS queries remain private and unrecorded.</li>
+                <li><strong>Session Metadata:</strong> No tracking of session durations or usage patterns.</li>
             </ul>
 
-            <h2><i class="fa-solid fa-user-slash"></i> 3. Personal Data</h2>
-            <p>SiloVPN does <strong>NOT</strong> collect any personally identifiable information (PII) from our users. We believe in absolute anonymity.</p>
-
-            <h2><i class="fa-solid fa-microchip"></i> 4. Limited Technical Data</h2>
-            <p>To maintain and improve service quality, we may collect minimal technical data such as:</p>
+            <h2><i class="fa-solid fa-vial-virus"></i> 4. Limited Technical Diagnostics</h2>
+            <p>To maintain stability, we may collect minimal, 100% anonymized diagnostic data:</p>
             <ul class="policy-list">
-                <li>Basic app diagnostics (e.g., crash reports).</li>
-                <li>Device type and operating system version.</li>
+                <li>Device metadata (Model and OS version).</li>
+                <li>Aggregated crash reports and connection success rates.</li>
             </ul>
-            <p>This data is anonymized, non-identifiable, and used strictly for technical performance enhancements.</p>
+            <p>This data is <strong>non-identifiable</strong> and used only for internal technical enhancements. We do NOT sell or trade this data.</p>
 
-            <h2><i class="fa-solid fa-circle-check"></i> 5. Use of Information</h2>
-            <p>Any collected data is used strictly to improve application performance, fix bugs, and maintain service stability.</p>
-            <p><strong>Zero-Sharing:</strong> We do NOT sell, trade, or share user data with any third parties.</p>
+            <h2><i class="fa-solid fa-globe"></i> 5. Global Compliance & Children’s Privacy</h2>
+            <p>We comply with international standards (GDPR, CCPA, and Google Play’s Families Policy):</p>
+            <ul class="policy-list">
+                <li><strong>Minor Protection:</strong> We do not knowingly collect information from children under 13.</li>
+                <li><strong>Safety Measures:</strong> While users must be 18+, we implement safety protocols for all users.</li>
+            </ul>
 
-            <h2><i class="fa-solid fa-lock"></i> 6. Security</h2>
-            <p>We implement industry-standard encryption and secure protocols to protect user data and ensure all communications remain safe and private.</p>
+            <h2><i class="fa-solid fa-user-shield"></i> 6. User Rights</h2>
+            <p>Under global laws, you have the right to request information about processed technical data, request deletion of diagnostic logs, or object to data processing activities.</p>
 
-            <h2><i class="fa-solid fa-envelope"></i> 7. Data Deletion & Contact</h2>
-            <p>If you have any questions or wish to request data deletion, you can contact our support team at:</p>
-            <p><a href="mailto:support@silovpn.me" style="color: var(--accent); font-weight: 600; text-decoration: none;">support@silovpn.me</a></p>
+            <h2><i class="fa-solid fa-lock"></i> 7. Security Measures</h2>
+            <p>We implement industry-standard encryption and secure protocols to ensure all communications remain safe and private. Our servers are optimized for lightning-fast speeds without compromising security.</p>
 
-            <h2><i class="fa-solid fa-clock-rotate-left"></i> 8. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. Any changes will be reflected directly within the application.</p>
+            <h2><i class="fa-solid fa-envelope-open-text"></i> 8. Contact & Data Deletion</h2>
+            <p>If you have questions or wish to request data deletion, contact us at:</p>
+            <p style="font-weight: 600; color: var(--accent);">
+                <a href="mailto:support@silovpn.me" style="text-decoration: none; color: inherit;">support@silovpn.me</a>
+            </p>
         </section>
         
         <div class="footer-note">
