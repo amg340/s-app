@@ -3,65 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support — SiloVPN Help Center</title>
+    <title>Help & Support — SiloVPN</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        /* (نفس التنسيقات لضمان التوحيد) */
-        :root { --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD; --text-dark: #1D1D1F; --text-gray: #6E6E73; --border: rgba(0,0,0,0.06); --radius: 20px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        :root {
+            --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD;
+            --text-dark: #1D1D1F; --text-gray: #6E6E73; --border: rgba(0,0,0,0.06);
+            --radius: 20px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; }
-        .sidebar { width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border); height: 100vh; position: fixed; padding: 4rem 2rem; display: flex; flex-direction: column; z-index: 1000; transition: var(--transition); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; overflow-x: hidden; }
+
+        /* --- Sidebar Logic (Desktop) --- */
+        .sidebar {
+            width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
+            height: 100vh; position: fixed; padding: 4rem 2rem; display: flex;
+            flex-direction: column; z-index: 1000; transition: var(--transition);
+        }
+
         .brand { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem; }
         .brand span { color: var(--accent); }
+
+        .nav-section { margin-bottom: 2.5rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px; }
+
         .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
         .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
-        .mobile-header { display: none; width: 100%; padding: 1.5rem; background: #fff; border-bottom: 1px solid var(--border); position: fixed; top: 0; z-index: 1100; justify-content: space-between; align-items: center; }
-        .menu-toggle { background: var(--sidebar-bg); border: 1px solid var(--border); width: 45px; height: 45px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        main { margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%; transition: var(--transition); }
-        @media (max-width: 1024px) { .sidebar { transform: translateX(-100%); width: 280px; box-shadow: 20px 0 50px rgba(0,0,0,0.05); } .sidebar.active { transform: translateX(0); } .mobile-header { display: flex; } main { margin-left: 0; padding: 7rem 1.5rem 4rem 1.5rem; } .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 900; backdrop-filter: blur(4px); } .overlay.active { display: block; } }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
+        .nav-item i { width: 30px; font-size: 1.2rem; }
 
-        /* Support Styling */
-        .faq-item { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
-        .faq-item h3 { font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--text-dark); }
-        .contact-box { background: rgba(0, 102, 255, 0.05); padding: 3rem; border-radius: 32px; text-align: center; margin-top: 4rem; }
+        /* --- Mobile Navigation Header --- */
+        .mobile-header {
+            display: none; width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; z-index: 1100; justify-content: space-between; align-items: center;
+        }
+
+        .menu-toggle {
+            background: var(--sidebar-bg); border: 1px solid var(--border);
+            width: 45px; height: 45px; border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+
+        /* --- Mobile Overlay --- */
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); z-index: 900; backdrop-filter: blur(4px);
+            opacity: 0; transition: var(--transition); pointer-events: none;
+        }
+        .overlay.active { display: block; opacity: 1; pointer-events: auto; }
+
+        /* --- Main Content --- */
+        main { margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%; transition: var(--transition); }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); width: 280px; box-shadow: 20px 0 50px rgba(0,0,0,0.05); }
+            .sidebar.active { transform: translateX(0); }
+            .mobile-header { display: flex; }
+            main { margin-left: 0; padding: 7rem 1.5rem 4rem 1.5rem; }
+            .contact-card { flex-direction: column; text-align: center; gap: 2rem; padding: 2rem !important; }
+        }
+
+        /* Support Page Styling */
+        .page-header { margin-bottom: 4rem; }
+        .support-icon { color: var(--accent); font-size: 3rem; margin-bottom: 1.5rem; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; margin: 3.5rem 0 1.2rem; }
+        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+
+        /* بطاقة التواصل */
+        .contact-card {
+            background: linear-gradient(135deg, #0066FF 0%, #0044AA 100%);
+            padding: 3rem; border-radius: 24px; color: white; margin: 3rem 0;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
+        }
+        .contact-info h3 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .contact-info p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 0; }
+
+        .email-btn {
+            background: white; color: var(--accent); padding: 16px 32px;
+            border-radius: 14px; text-decoration: none; font-weight: 700;
+            transition: var(--transition); display: flex; align-items: center;
+        }
+        .email-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .email-btn i { margin-right: 10px; }
+
+        .faq-item { border-bottom: 1px solid var(--border); padding: 2rem 0; }
+        .faq-item h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); font-family: 'Outfit', sans-serif; }
+        .faq-item p { font-size: 1.05rem; margin-bottom: 0; }
     </style>
 </head>
 <body>
+
     <div class="mobile-header">
         <a href="index.html" class="brand" style="margin-bottom:0; font-size:1.4rem;">Silo<span>VPN</span></a>
-        <button class="menu-toggle" id="menuBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+        <button class="menu-toggle" id="menuBtn">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
     </div>
+
     <div class="overlay" id="overlay"></div>
 
     <aside class="sidebar" id="sidebar">
         <a href="index.html" class="brand">Silo<span>VPN</span></a>
+
         <div class="nav-section">
-            <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="section-label">Legal</div>
             <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
             <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
-            <a href="support.html" class="nav-item active"><i class="fa-solid fa-circle-question"></i> Support</a>
-            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="section-label">Support Center</div>
+            <a href="support.html" class="nav-item active"><i class="fa-solid fa-circle-question"></i> Help & Support</a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About Silo</a>
         </div>
     </aside>
 
     <main>
-        <h1 style="font-family:'Outfit'; font-size:3rem; margin-bottom:3rem;">Help & <span style="color:var(--accent)">Support</span></h1>
-
-        <div class="faq-item">
-            <h3>How do I connect?</h3>
-            <p style="color:var(--text-gray);">Simply open the SiloVPN app, select your preferred server location, and tap the connect button. Your traffic will be encrypted instantly.</p>
+        <div class="page-header">
+            <i class="fa-solid fa-headset support-icon"></i>
+            <h1>Help & Support</h1>
+            <p>Our dedicated team is here to ensure your SiloVPN experience is seamless and secure.</p>
         </div>
 
-        <div class="faq-item">
-            <h3>Is my data safe?</h3>
-            <p style="color:var(--text-gray);">Absolutely. We use industry-standard encryption protocols and follow a strict "No-Logs" policy.</p>
-        </div>
+        <section>
+            <div class="contact-card">
+                <div class="contact-info">
+                    <h3>Contact Our Team</h3>
+                    <p>Expect a professional response within 24 hours.</p>
+                </div>
+                <a href="mailto:support@silovpn.me" class="email-btn">
+                    <i class="fa-solid fa-envelope"></i> Send Email
+                </a>
+            </div>
 
-        <div class="contact-box">
-            <h2 style="font-family:'Outfit'; margin-bottom:1rem;">Still need help?</h2>
-            <p style="margin-bottom:2rem;">Our support team is available to assist you with any technical issues.</p>
-            <a href="mailto:support@silovpn.me" style="background:var(--accent); color:white; padding:15px 30px; border-radius:15px; text-decoration:none; font-weight:700;">Email Support</a>
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>How do I start using SiloVPN?</h3>
+                <p>Simply download the app, open it, and tap the central shield button. The app will automatically configure the best server using the WireGuard® protocol for elite performance.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is my data really private?</h3>
+                <p>Yes. We operate under a strict no-logs policy. Your data is encrypted at the device level, meaning your browsing activity is invisible even to us.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>I'm experiencing slow speeds. What should I do?</h3>
+                <p>Try switching to a different server location or restarting the app. Ensure you have a stable local internet connection for the best results.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I use SiloVPN on multiple devices?</h3>
+                <p>SiloVPN is currently optimized for Android. We are working on expanding to other platforms very soon. Stay tuned for updates!</p>
+            </div>
+        </section>
+        
+        <div style="margin-top: 6rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem;">
+            &copy; 2026 SiloVPN. All rights reserved.
         </div>
     </main>
 
@@ -69,7 +176,12 @@
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
-        function toggleMenu() { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); }
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
         menuBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
     </script>
