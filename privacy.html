@@ -3,213 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — SiloVPN Elite Privacy</title>
-    
+    <title>Privacy Policy — SiloVPN</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         :root {
-            --accent: #0066FF;
-            --bg: #ffffff;
-            --sidebar-bg: #FBFBFD;
-            --text-dark: #1D1D1F;
-            --text-gray: #6E6E73;
-            --border: rgba(0,0,0,0.06);
-            --radius: 20px;
-            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD;
+            --text-dark: #1D1D1F; --text-gray: #6E6E73; --border: rgba(0,0,0,0.06);
+            --radius: 20px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-dark);
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* --- Sidebar (موحد لكل الصفحات) --- */
+        /* --- Sidebar Logic --- */
         .sidebar {
             width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
             height: 100vh; position: fixed; padding: 4rem 2rem; display: flex;
-            flex-direction: column; z-index: 100;
+            flex-direction: column; z-index: 1000; transition: var(--transition);
         }
 
-        .brand {
-            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800;
-            color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem;
-        }
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem; }
         .brand span { color: var(--accent); }
 
-        .nav-section { margin-bottom: 2.5rem; }
-        .section-label {
-            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px;
-        }
-
-        .nav-item {
-            display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark);
-            text-decoration: none; font-weight: 500; border-radius: var(--radius);
-            transition: var(--transition); margin-bottom: 6px;
-        }
-
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
         .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
-        .nav-item:hover { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); transform: translateY(-2px); color: var(--accent); }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateY(-2px); }
         .nav-item i { width: 30px; font-size: 1.2rem; }
-        .nav-item .chevron { margin-left: auto; font-size: 0.7rem; opacity: 0.2; }
 
-        /* --- Main Content Area --- */
-        main {
-            margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%;
-            animation: fadeIn 0.8s var(--transition);
+        /* --- Mobile Header & Menu Toggle --- */
+        .mobile-header {
+            display: none; width: 100%; padding: 1.5rem; background: #fff;
+            border-bottom: 1px solid var(--border); position: fixed; top: 0; z-index: 1100;
+            justify-content: space-between; align-items: center;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
-        .last-updated { color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; margin-bottom: 12px; display: block; }
-
-        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
-        
-        /* تنسيق الأقسام الجمالي */
-        section { margin-bottom: 4rem; }
-        
-        h2 { 
-            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; 
-            margin: 3rem 0 1.5rem; color: var(--text-dark); display: flex; align-items: center; 
-        }
-        h2 i { margin-right: 15px; color: var(--accent); font-size: 1.4rem; background: rgba(0, 102, 255, 0.05); padding: 10px; border-radius: 12px; }
-
-        p { font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
-
-        /* قائمة المميزات الاحترافية */
-        .policy-list { list-style: none; margin: 1.5rem 0; display: grid; gap: 12px; }
-        .policy-list li {
-            position: relative; padding-left: 2rem;
-            color: var(--text-gray); font-size: 1.05rem; display: flex; align-items: flex-start;
-        }
-        .policy-list li::before {
-            content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900;
-            color: var(--accent); position: absolute; left: 0; top: 4px; font-size: 1.1rem;
+        .menu-toggle {
+            background: var(--sidebar-bg); border: 1px solid var(--border);
+            width: 45px; height: 45px; border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-dark);
         }
 
-        /* صندوق التمييز (VpnService & No-Logs) */
-        .highlight-card {
-            background: #FBFBFD; border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem;
-            margin: 2rem 0; border-left: 5px solid var(--accent);
-        }
-        .highlight-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); }
-        
-        .no-logs-badge {
-            display: inline-flex; align-items: center; background: #FF3B30; color: white;
-            padding: 6px 16px; border-radius: 100px; font-weight: 700; font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;
-        }
+        /* --- Main Content --- */
+        main { margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%; transition: var(--transition); }
 
-        .footer-note {
-            margin-top: 8rem; padding-top: 2rem; border-top: 1px solid var(--border);
-            font-size: 0.9rem; color: var(--text-gray);
-        }
-
-        /* Responsive Mobile */
+        /* --- Mobile Responsive Rules --- */
         @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: static; padding: 2.5rem; border-right: none; border-bottom: 1px solid var(--border); }
-            main { margin-left: 0; padding: 4rem 2rem; }
-            h1 { font-size: 2.8rem; }
+            .sidebar { transform: translateX(-100%); width: 280px; box-shadow: 20px 0 50px rgba(0,0,0,0.05); }
+            .sidebar.active { transform: translateX(0); }
+            .mobile-header { display: flex; }
+            main { margin-left: 0; padding: 7rem 1.5rem 4rem 1.5rem; }
+            .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 900; backdrop-filter: blur(4px); }
+            .overlay.active { display: block; }
         }
+
+        /* Content Styling */
+        .page-header { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin: 2.5rem 0 1rem; display: flex; align-items: center; }
+        h2 i { margin-right: 12px; color: var(--accent); }
+        p { font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+        .highlight-card { background: #FBFBFD; border-left: 5px solid var(--accent); padding: 2rem; border-radius: 20px; margin: 2rem 0; }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
+    <div class="mobile-header">
+        <a href="index.html" class="brand" style="margin-bottom:0; font-size:1.4rem;">Silo<span>VPN</span></a>
+        <button class="menu-toggle" id="menuBtn">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
         <a href="index.html" class="brand">Silo<span>VPN</span></a>
-
         <div class="nav-section">
-            <div class="section-label">Legal</div>
-            <a href="privacy.html" class="nav-item active">
-                <i class="fa-solid fa-shield-halved"></i> Privacy Policy <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
-            <a href="terms.html" class="nav-item">
-                <i class="fa-solid fa-file-lines"></i> Terms of Service <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
-        </div>
-
-        <div class="nav-section">
-            <div class="section-label">Help Center</div>
-            <a href="support.html" class="nav-item">
-                <i class="fa-solid fa-circle-question"></i> Support <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
-            <a href="about.html" class="nav-item">
-                <i class="fa-solid fa-circle-info"></i> About <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
+            <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="privacy.html" class="nav-item active"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+            <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
+            <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Support</a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
         </div>
     </aside>
 
     <main>
         <div class="page-header">
-            <span class="last-updated">Last Updated: March 2026</span>
+            <span style="color:var(--accent); font-weight:700; font-size:0.8rem; letter-spacing:1px;">LAST UPDATED: MARCH 2026</span>
             <h1>Privacy Policy</h1>
-            <p>At <strong>SiloVPN</strong>, we believe that privacy is a fundamental human right. Our application is designed to be lightweight, secure, and transparent.</p>
         </div>
 
         <section>
-            <h2><i class="fa-solid fa-gears"></i> 1. Introduction & Commitment</h2>
-            <p>This Privacy Policy explains how we process information and, more importantly, what we do <strong>NOT</strong> collect. By using SiloVPN, you consent to the practices described herein.</p>
-
+            <h2><i class="fa-solid fa-gears"></i> 1. VpnService Utilization</h2>
+            <p>To provide its core functionality, SiloVPN utilizes the <strong>Android VpnService API</strong> to create a secure, encrypted tunnel at the system level for your traffic.</p>
+            
             <div class="highlight-card">
-                <h3><i class="fa-solid fa-microchip" style="background: none; padding: 0; margin-right: 10px;"></i> 2. Core Functionality: Android VpnService</h3>
-                <p>To provide its core functionality, SiloVPN utilizes the <strong>Android VpnService API</strong> to create a secure, encrypted tunnel at the system level for your internet traffic.</p>
-                <ul class="policy-list">
-                    <li><strong>Implementation:</strong> This tunnel ensures all data packets are encapsulated and protected from third-party interception.</li>
-                    <li><strong>Protocol:</strong> Powered by the <strong>WireGuard® protocol</strong>, providing high-speed performance and state-of-the-art cryptographic primitives.</li>
-                </ul>
+                <p><strong>WireGuard® Protocol:</strong> Our infrastructure is built on modern cryptographic primitives ensuring high-speed performance and maximum security.</p>
             </div>
 
-            <h2><i class="fa-solid fa-eye-slash"></i> 3. Strict No-Logs Guarantee</h2>
-            <div class="no-logs-badge">Rigorous No-Logs Policy</div>
-            <p>We do NOT collect, store, or share your data. Our infrastructure is built to be blind to your activity:</p>
-            <ul class="policy-list">
-                <li><strong>Online Activity:</strong> No visibility into websites, apps, or content.</li>
-                <li><strong>Connection Identifiers:</strong> No logging of original IP, assigned IP, or timestamps.</li>
-                <li><strong>DNS Records:</strong> All DNS queries remain private and unrecorded.</li>
-                <li><strong>Session Metadata:</strong> No tracking of session durations or usage patterns.</li>
-            </ul>
+            <h2><i class="fa-solid fa-eye-slash"></i> 2. Strict No-Logs Guarantee</h2>
+            <p>We operate under a rigorous "No-Logs" policy. We do NOT collect, store, or share your online activity, IP addresses, or DNS queries.</p>
 
-            <h2><i class="fa-solid fa-vial-virus"></i> 4. Limited Technical Diagnostics</h2>
-            <p>To maintain stability, we may collect minimal, 100% anonymized diagnostic data:</p>
-            <ul class="policy-list">
-                <li>Device metadata (Model and OS version).</li>
-                <li>Aggregated crash reports and connection success rates.</li>
-            </ul>
-            <p>This data is <strong>non-identifiable</strong> and used only for internal technical enhancements. We do NOT sell or trade this data.</p>
-
-            <h2><i class="fa-solid fa-globe"></i> 5. Global Compliance & Children’s Privacy</h2>
-            <p>We comply with international standards (GDPR, CCPA, and Google Play’s Families Policy):</p>
-            <ul class="policy-list">
-                <li><strong>Minor Protection:</strong> We do not knowingly collect information from children under 13.</li>
-                <li><strong>Safety Measures:</strong> While users must be 18+, we implement safety protocols for all users.</li>
-            </ul>
-
-            <h2><i class="fa-solid fa-user-shield"></i> 6. User Rights</h2>
-            <p>Under global laws, you have the right to request information about processed technical data, request deletion of diagnostic logs, or object to data processing activities.</p>
-
-            <h2><i class="fa-solid fa-lock"></i> 7. Security Measures</h2>
-            <p>We implement industry-standard encryption and secure protocols to ensure all communications remain safe and private. Our servers are optimized for lightning-fast speeds without compromising security.</p>
-
-            <h2><i class="fa-solid fa-envelope-open-text"></i> 8. Contact & Data Deletion</h2>
-            <p>If you have questions or wish to request data deletion, contact us at:</p>
-            <p style="font-weight: 600; color: var(--accent);">
-                <a href="mailto:support@silovpn.me" style="text-decoration: none; color: inherit;">support@silovpn.me</a>
-            </p>
+            <h2><i class="fa-solid fa-envelope"></i> 3. Contact Us</h2>
+            <p>For inquiries, reach out to: <a href="mailto:support@silovpn.me" style="color:var(--accent); text-decoration:none; font-weight:600;">support@silovpn.me</a></p>
         </section>
-        
-        <div class="footer-note">
-            &copy; 2026 SiloVPN. All rights reserved.
-        </div>
     </main>
 
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
 </body>
 </html>
