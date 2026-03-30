@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SiloVPN — Private. Secure. Elite.</title>
+    <title>SiloVPN — Secure. Private. Reliable.</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         :root {
             --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD;
-            --text-dark: #1D1D1F; --text-gray: #6E6E73; --border: rgba(0,0,0,0.06);
+            --text-dark: #1D1D1F; --text-gray: #64748b; --border: rgba(0,0,0,0.06);
             --radius: 20px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -26,7 +26,7 @@
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
         .brand span { color: var(--accent); }
 
         .menu-toggle {
@@ -44,7 +44,7 @@
         }
         .sidebar.active { transform: translateX(0); }
 
-        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; display: block; }
+        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; }
         .sidebar .brand { font-size: 1.8rem; }
 
         .nav-section { margin-bottom: 2.5rem; }
@@ -55,12 +55,12 @@
         .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(-8px); }
         .nav-item i { width: 30px; font-size: 1.2rem; }
 
-        /* --- الغطاء الخلفي --- */
+        /* --- Overlay --- */
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
 
-        /* --- المحتوى الرئيسي (Mobile-First) --- */
-        main { width: 100%; padding: 7rem 1.2rem 4rem 1.2rem; transition: var(--transition); }
+        /* --- Content Area --- */
+        main { width: 100%; padding: 6.5rem 1.2rem 4rem 1.2rem; transition: var(--transition); text-align: center; }
 
         @media (min-width: 1025px) {
             .header { padding: 1.5rem 10%; }
@@ -69,13 +69,27 @@
             main { margin-left: 300px; padding: 8rem 10% 4rem 10%; width: calc(100% - 300px); }
         }
 
-        /* --- Hero Content Elements --- */
-        h1 { font-family: 'Outfit', sans-serif; font-size: 3.2rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 2rem; }
-        h1 span { color: var(--accent); }
-        
-        .hero-text { font-size: 1.2rem; line-height: 1.7; color: var(--text-gray); max-width: 600px; margin-bottom: 3rem; }
+        /* --- Hero Content --- */
+        .hero { max-width: 800px; margin: 2rem auto; }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1.5rem; letter-spacing: -1.5px; line-height: 1.1; }
+        .hero p { font-size: 1.15rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 3rem; }
 
-        .footer-note { margin-top: 4rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.85rem; color: var(--text-gray); }
+        /* --- Content Section (الذي أرسلته مؤخراً) --- */
+        .content-section {
+            max-width: 700px; margin: 2rem auto; padding: 2.5rem;
+            background: #f8fafc; border-radius: 24px; text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        .content-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; color: var(--text-dark); border-bottom: 2px solid #e2e8f0; padding-bottom: 0.8rem; margin-bottom: 1.5rem; }
+        .content-section p { font-size: 1rem; color: var(--text-gray); margin-bottom: 1.5rem; }
+        .content-section ul { list-style: none; padding: 0; }
+        .content-section li { margin-bottom: 1rem; color: var(--text-dark); display: flex; align-items: flex-start; gap: 12px; }
+        .content-section li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--accent); margin-top: 4px; }
+        .content-section strong { font-weight: 600; }
+
+        /* --- الفوتر --- */
+        footer { margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -108,12 +122,24 @@
     </aside>
 
     <main>
-        <h1>The internet.<br><span>Unlocked. Secure.</span></h1>
-        <p class="hero-text">Experience true digital freedom with SiloVPN. Encrypt your connection, mask your identity, and access the global web with elite-grade security infrastructure.</p>
-        
-        <div class="footer-note">
-            &copy; 2026 SiloVPN. All rights reserved.
-        </div>
+        <section class="hero">
+            <h1>Secure. Private. Reliable.</h1>
+            <p>We are building the next generation of privacy-focused tools. Our mission is to keep your digital life secure without compromises.</p>
+            
+            <div class="content-section">
+                <h2>Privacy Policy</h2>
+                <p>Your privacy is our priority. Below is our general commitment to users:</p>
+                <ul>
+                    <li><span><strong>No Data Logging:</strong> We do not track, collect, or store your personal activity.</span></li>
+                    <li><span><strong>Zero Knowledge:</strong> We design our systems so that even we cannot access your private data.</span></li>
+                    <li><span><strong>Transparency:</strong> Our infrastructure is built on security-first principles.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 silovpn.me | Developed by Muhammed
+        </footer>
     </main>
 
     <script>
