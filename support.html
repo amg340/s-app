@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Help & Support — SiloVPN</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,111 +16,109 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-        /* --- Sidebar Logic (Desktop) --- */
-        .sidebar {
-            width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
-            height: 100vh; position: fixed; padding: 4rem 2rem; display: flex;
-            flex-direction: column; z-index: 1000; transition: var(--transition);
-        }
-
-        .brand { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem; }
-        .brand span { color: var(--accent); }
-
-        .nav-section { margin-bottom: 2.5rem; }
-        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px; }
-
-        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
-        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
-        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
-        .nav-item i { width: 30px; font-size: 1.2rem; }
-
-        /* --- Mobile Navigation Header --- */
-        .mobile-header {
-            display: none; width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.8);
+        /* --- الهيدر العالمي (الاسم يسار، المنيو يمين) --- */
+        .header {
+            width: 100%; padding: 1rem 1.2rem; background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
-            position: fixed; top: 0; z-index: 1100; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; left: 0; z-index: 1500;
+            display: flex; justify-content: space-between; align-items: center;
         }
+
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
+        .brand span { color: var(--accent); }
 
         .menu-toggle {
             background: var(--sidebar-bg); border: 1px solid var(--border);
-            width: 45px; height: 45px; border-radius: 12px; cursor: pointer;
+            width: 44px; height: 44px; border-radius: 12px; cursor: pointer;
             display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
 
-        /* --- Mobile Overlay --- */
-        .overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3); z-index: 900; backdrop-filter: blur(4px);
-            opacity: 0; transition: var(--transition); pointer-events: none;
+        /* --- القائمة الجانبية (تفتح من اليمين) --- */
+        .sidebar {
+            width: 280px; background: var(--sidebar-bg); border-left: 1px solid var(--border);
+            height: 100vh; position: fixed; right: 0; top: 0; padding: 2.5rem 1.5rem;
+            display: flex; flex-direction: column; z-index: 2000; 
+            transform: translateX(100%); transition: var(--transition);
         }
-        .overlay.active { display: block; opacity: 1; pointer-events: auto; }
+        .sidebar.active { transform: translateX(0); }
 
-        /* --- Main Content --- */
-        main { margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%; transition: var(--transition); }
+        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; display: block; }
+        .sidebar .brand { font-size: 1.8rem; }
 
-        /* --- Responsiveness --- */
-        @media (max-width: 1024px) {
-            .sidebar { transform: translateX(-100%); width: 280px; box-shadow: 20px 0 50px rgba(0,0,0,0.05); }
-            .sidebar.active { transform: translateX(0); }
-            .mobile-header { display: flex; }
-            main { margin-left: 0; padding: 7rem 1.5rem 4rem 1.5rem; }
-            .contact-card { flex-direction: column; text-align: center; gap: 2rem; padding: 2rem !important; }
+        .nav-section { margin-bottom: 2.5rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-gray); margin-bottom: 1rem; }
+        
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
+        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(-8px); }
+        .nav-item i { width: 30px; font-size: 1.2rem; }
+
+        /* --- Overlay --- */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); }
+        .overlay.active { display: block; }
+
+        /* --- Content Area (تجاوب كامل) --- */
+        main { width: 100%; padding: 6.5rem 1.2rem 4rem 1.2rem; transition: var(--transition); }
+
+        @media (min-width: 1025px) {
+            .header { padding: 1.5rem 10%; }
+            .sidebar { transform: translateX(0); left: 0; right: auto; border-left: none; border-right: 1px solid var(--border); width: 300px; }
+            .menu-toggle { display: none; }
+            main { margin-left: 300px; padding: 8rem 10% 4rem 10%; width: calc(100% - 300px); }
         }
 
-        /* Support Page Styling */
-        .page-header { margin-bottom: 4rem; }
-        .support-icon { color: var(--accent); font-size: 3rem; margin-bottom: 1.5rem; }
-        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; }
-        h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; margin: 3.5rem 0 1.2rem; }
-        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+        /* --- Support Page Elements --- */
+        .page-header { margin-bottom: 3rem; }
+        .support-icon { color: var(--accent); font-size: 2.5rem; margin-bottom: 1rem; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1rem; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; margin: 3rem 0 1.5rem; }
+        p { font-size: 1.05rem; line-height: 1.7; color: var(--text-gray); }
 
-        /* بطاقة التواصل */
+        /* بطاقة التواصل الفخمة */
         .contact-card {
             background: linear-gradient(135deg, #0066FF 0%, #0044AA 100%);
-            padding: 3rem; border-radius: 24px; color: white; margin: 3rem 0;
-            display: flex; align-items: center; justify-content: space-between;
+            padding: 2rem; border-radius: 24px; color: white; margin: 2rem 0;
             box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
         }
-        .contact-info h3 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
-        .contact-info p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 0; }
+        .contact-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .contact-card p { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
         .email-btn {
-            background: white; color: var(--accent); padding: 16px 32px;
+            background: white; color: var(--accent); padding: 14px 24px;
             border-radius: 14px; text-decoration: none; font-weight: 700;
-            transition: var(--transition); display: flex; align-items: center;
+            display: inline-flex; align-items: center; gap: 10px; transition: var(--transition);
         }
-        .email-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .email-btn i { margin-right: 10px; }
+        .email-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        .faq-item { border-bottom: 1px solid var(--border); padding: 2rem 0; }
-        .faq-item h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); font-family: 'Outfit', sans-serif; }
-        .faq-item p { font-size: 1.05rem; margin-bottom: 0; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .faq-item h3 { font-size: 1.15rem; margin-bottom: 0.8rem; color: var(--text-dark); font-family: 'Outfit', sans-serif; }
+        .faq-item p { font-size: 0.95rem; margin-bottom: 0; }
+
+        .footer { margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <div class="mobile-header">
-        <a href="index.html" class="brand" style="margin-bottom:0; font-size:1.4rem;">Silo<span>VPN</span></a>
-        <button class="menu-toggle" id="menuBtn">
-            <i class="fa-solid fa-bars-staggered"></i>
-        </button>
-    </div>
+    <header class="header">
+        <a href="index.html" class="brand">Silo<span>VPN</span></a>
+        <button class="menu-toggle" id="menuBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+    </header>
 
     <div class="overlay" id="overlay"></div>
 
     <aside class="sidebar" id="sidebar">
-        <a href="index.html" class="brand">Silo<span>VPN</span></a>
-
+        <a href="index.html" class="sidebar-brand">
+            <div class="brand">Silo<span>VPN</span></div>
+        </a>
         <div class="nav-section">
             <div class="section-label">Legal</div>
             <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
             <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
         </div>
-
         <div class="nav-section">
-            <div class="section-label">Support Center</div>
+            <div class="section-label">Support</div>
             <a href="support.html" class="nav-item active"><i class="fa-solid fa-circle-question"></i> Help & Support</a>
             <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About Silo</a>
         </div>
@@ -135,10 +133,8 @@
 
         <section>
             <div class="contact-card">
-                <div class="contact-info">
-                    <h3>Contact Our Team</h3>
-                    <p>Expect a professional response within 24 hours.</p>
-                </div>
+                <h3>Contact Our Team</h3>
+                <p>Expect a professional response within 24 hours.</p>
                 <a href="mailto:support@silovpn.me" class="email-btn">
                     <i class="fa-solid fa-envelope"></i> Send Email
                 </a>
@@ -167,23 +163,17 @@
             </div>
         </section>
         
-        <div style="margin-top: 6rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem;">
+        <footer class="footer">
             &copy; 2026 SiloVPN. All rights reserved.
-        </div>
+        </footer>
     </main>
 
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
-
-        function toggleMenu() {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+        function toggle() { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); }
+        menuBtn.onclick = toggle; overlay.onclick = toggle;
     </script>
 </body>
 </html>
