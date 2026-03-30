@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>About SiloVPN — Privacy & Performance</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,100 +16,100 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-        /* --- Sidebar Logic (Desktop) --- */
-        .sidebar {
-            width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
-            height: 100vh; position: fixed; padding: 4rem 2rem; display: flex;
-            flex-direction: column; z-index: 1000; transition: var(--transition);
-        }
-
-        .brand { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem; }
-        .brand span { color: var(--accent); }
-
-        .nav-section { margin-bottom: 2.5rem; }
-        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px; }
-
-        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
-        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
-        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
-        .nav-item i { width: 30px; font-size: 1.2rem; }
-
-        /* --- Mobile Navigation Header --- */
-        .mobile-header {
-            display: none; width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.8);
+        /* --- الهيدر العالمي (الاسم يسار، المنيو يمين) --- */
+        .header {
+            width: 100%; padding: 1rem 1.2rem; background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
-            position: fixed; top: 0; z-index: 1100; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; left: 0; z-index: 1500;
+            display: flex; justify-content: space-between; align-items: center;
         }
+
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
+        .brand span { color: var(--accent); }
 
         .menu-toggle {
             background: var(--sidebar-bg); border: 1px solid var(--border);
-            width: 45px; height: 45px; border-radius: 12px; cursor: pointer;
+            width: 44px; height: 44px; border-radius: 12px; cursor: pointer;
             display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
 
-        /* --- Mobile Overlay --- */
-        .overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3); z-index: 900; backdrop-filter: blur(4px);
-            opacity: 0; transition: var(--transition); pointer-events: none;
+        /* --- القائمة الجانبية (تفتح من اليمين) --- */
+        .sidebar {
+            width: 280px; background: var(--sidebar-bg); border-left: 1px solid var(--border);
+            height: 100vh; position: fixed; right: 0; top: 0; padding: 2.5rem 1.5rem;
+            display: flex; flex-direction: column; z-index: 2000; 
+            transform: translateX(100%); transition: var(--transition);
         }
-        .overlay.active { display: block; opacity: 1; pointer-events: auto; }
+        .sidebar.active { transform: translateX(0); }
 
-        /* --- Main Content --- */
-        main { margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%; transition: var(--transition); }
+        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; display: block; }
+        .sidebar .brand { font-size: 1.8rem; }
 
-        /* --- Responsiveness --- */
-        @media (max-width: 1024px) {
-            .sidebar { transform: translateX(-100%); width: 280px; box-shadow: 20px 0 50px rgba(0,0,0,0.05); }
-            .sidebar.active { transform: translateX(0); }
-            .mobile-header { display: flex; }
-            main { margin-left: 0; padding: 7rem 1.5rem 4rem 1.5rem; }
-            h1 { font-size: 2.8rem !important; }
-        }
-
-        /* About Page Specific Styling */
-        .page-header { margin-bottom: 4rem; }
-        .about-icon { color: var(--accent); font-size: 3rem; margin-bottom: 1.5rem; display: block; }
-        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; }
-        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
-
-        .tech-box { background: var(--sidebar-bg); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; margin: 2rem 0; }
-        .tech-tag { background: var(--accent); color: white; padding: 4px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; }
+        .nav-section { margin-bottom: 2.5rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-gray); margin-bottom: 1rem; }
         
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
+        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(-8px); }
+        .nav-item i { width: 30px; font-size: 1.2rem; }
+
+        /* --- Overlay --- */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); }
+        .overlay.active { display: block; }
+
+        /* --- Content Area (تجاوب كامل) --- */
+        main { width: 100%; padding: 6.5rem 1.2rem 4rem 1.2rem; transition: var(--transition); }
+
+        @media (min-width: 1025px) {
+            .header { padding: 1.5rem 10%; }
+            .sidebar { transform: translateX(0); left: 0; right: auto; border-left: none; border-right: 1px solid var(--border); width: 300px; }
+            .menu-toggle { display: none; }
+            main { margin-left: 300px; padding: 7rem 10% 4rem 10%; width: calc(100% - 300px); }
+        }
+
+        /* --- About Page Styling --- */
+        .page-header { margin-bottom: 3rem; }
+        .about-icon { color: var(--accent); font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1rem; }
+        p { font-size: 1.05rem; line-height: 1.7; color: var(--text-gray); margin-bottom: 1.5rem; }
+
+        .tech-box { background: var(--sidebar-bg); border: 1px solid var(--border); padding: 2rem; border-radius: 24px; margin: 2rem 0; }
+        .tech-tag { background: var(--accent); color: white; padding: 4px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
         .feature-card { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .feature-card i { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+        .feature-card i { color: var(--accent); font-size: 1.4rem; margin-bottom: 0.8rem; display: block; }
         .feature-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; font-family: 'Outfit', sans-serif; }
-        .feature-card p { font-size: 0.95rem; margin-bottom: 0; }
+        .feature-card p { font-size: 0.9rem; margin-bottom: 0; line-height: 1.5; }
 
-        .mission-list { list-style: none; }
-        .mission-list li { position: relative; padding-left: 2.5rem; margin-bottom: 1.2rem; color: var(--text-gray); font-size: 1.1rem; line-height: 1.6; display: flex; align-items: center; }
-        .mission-list li::before { content: "\f3ed"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--accent); position: absolute; left: 0; font-size: 1.2rem; }
+        .mission-list { list-style: none; margin: 2rem 0; }
+        .mission-list li { position: relative; padding-left: 2.5rem; margin-bottom: 1.2rem; color: var(--text-gray); font-size: 1rem; line-height: 1.6; display: flex; align-items: flex-start; }
+        .mission-list li::before { content: "\f3ed"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--accent); position: absolute; left: 0; font-size: 1.1rem; top: 2px; }
+
+        .footer { margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <div class="mobile-header">
-        <a href="index.html" class="brand" style="margin-bottom:0; font-size:1.4rem;">Silo<span>VPN</span></a>
-        <button class="menu-toggle" id="menuBtn">
-            <i class="fa-solid fa-bars-staggered"></i>
-        </button>
-    </div>
+    <header class="header">
+        <a href="index.html" class="brand">Silo<span>VPN</span></a>
+        <button class="menu-toggle" id="menuBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+    </header>
 
     <div class="overlay" id="overlay"></div>
 
     <aside class="sidebar" id="sidebar">
-        <a href="index.html" class="brand">Silo<span>VPN</span></a>
-        
+        <a href="index.html" class="sidebar-brand">
+            <div class="brand">Silo<span>VPN</span></div>
+        </a>
         <div class="nav-section">
             <div class="section-label">Legal</div>
             <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
             <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
         </div>
-
         <div class="nav-section">
             <div class="section-label">Support</div>
             <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Help Center</a>
@@ -121,13 +121,13 @@
         <div class="page-header">
             <i class="fa-solid fa-rocket about-icon"></i>
             <h1>About SiloVPN</h1>
-            <p style="margin-top: 1.5rem;">SiloVPN is a lightweight and privacy-focused application designed to redefine your digital freedom through secure and high-speed internet access.</p>
+            <p>SiloVPN is a lightweight and privacy-focused application designed to redefine your digital freedom through secure and high-speed internet access.</p>
         </div>
 
         <section>
             <div class="tech-box">
                 <span class="tech-tag">Next-Gen Protocol</span>
-                <h2 style="font-family:'Outfit'; margin-bottom:1rem;">Powered by WireGuard®</h2>
+                <h2 style="font-family:'Outfit'; font-size:1.6rem; margin-bottom:1rem;">Powered by WireGuard®</h2>
                 <p>SiloVPN is built on the foundation of the <strong>WireGuard® protocol</strong>, a modern VPN technology that replaces legacy protocols with a leaner, faster, and more secure architecture.</p>
                 
                 <div class="feature-grid">
@@ -147,34 +147,29 @@
                         <p>Designed to be lightweight and battery-friendly.</p>
                     </div>
                 </div>
-                <p style="margin-top: 1.5rem; font-size: 0.85rem; font-style: italic; opacity: 0.7;">"WireGuard" is a registered trademark of Jason A. Donenfeld.</p>
+                <p style="margin-top: 1.5rem; font-size: 0.8rem; font-style: italic; opacity: 0.6;">"WireGuard" is a registered trademark of Jason A. Donenfeld.</p>
             </div>
 
-            <h2 style="font-family:'Outfit'; font-size:2rem; margin: 4rem 0 1.5rem;">Our Mission</h2>
+            <h2 style="font-family:'Outfit'; font-size:1.8rem; margin: 3rem 0 1.5rem;">Our Mission</h2>
             <p>At SiloVPN, we believe that privacy is a fundamental right. Our mission is built on three pillars:</p>
             <ul class="mission-list">
-                <li><strong>Protect Privacy:</strong> Ensuring your online footprint remains yours alone.</li>
-                <li><strong>Network Security:</strong> Safeguarding your data on vulnerable public networks.</li>
-                <li><strong>User-Centric Design:</strong> Providing a simple, elite, and accessible VPN experience for everyone.</li>
+                <li><span><strong>Protect Privacy:</strong> Ensuring your online footprint remains yours alone.</span></li>
+                <li><span><strong>Network Security:</strong> Safeguarding your data on vulnerable public networks.</span></li>
+                <li><span><strong>User-Centric Design:</strong> Providing a simple, elite, and accessible VPN experience for everyone.</span></li>
             </ul>
             <p>We are committed to transparency, minimal data collection, and giving you absolute control over your digital identity.</p>
         </section>
         
-        <div style="margin-top: 6rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem;">
+        <footer class="footer">
             &copy; 2026 SiloVPN. All rights reserved.
-        </div>
+        </footer>
     </main>
 
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
-
-        function toggleMenu() {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
+        function toggleMenu() { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); }
         menuBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
     </script>
