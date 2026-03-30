@@ -1,43 +1,202 @@
-# Terms of Service for SiloVPN
-**Last Updated: March 2026**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — SiloVPN Elite Security</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-## 1. Acceptance of Terms
-By accessing or using SiloVPN, you agree to be bound by these Terms of Service. [cite_start]These terms constitute a legally binding agreement between you and the SiloVPN team[cite: 10].
+    <style>
+        :root {
+            --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD;
+            --text-dark: #1D1D1F; --text-gray: #6E6E73; --border: rgba(0,0,0,0.06);
+            --radius: 20px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-## 2. Eligibility & Age Requirements
-* [cite_start]You must be at least **18 years old** (or the legal age of majority in your jurisdiction) to create an account or use the SiloVPN service.
-* [cite_start]By using the service, you confirm that you possess the legal capacity to enter into this agreement[cite: 13].
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; overflow-x: hidden; }
 
-## 3. License & Acceptable Use
-SiloVPN grants you a limited, non-exclusive, non-transferable license to use the application for personal, non-commercial purposes. You agree NOT to use the service for:
-* [cite_start]**Illegal Acts:** Any activity that violates local, state, or international laws[cite: 14].
-* [cite_start]**Network Abuse:** Hacking, unauthorized access, or interfering with any network or service provider[cite: 15, 16].
-* [cite_start]**Malicious Software:** Distribution of viruses, malware, or harmful code[cite: 15].
-* **Harmful Behavior:** Engaging in actions that disrupt the service for other users.
+        /* --- Sidebar (يفتح من اليسار) --- */
+        .sidebar {
+            width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border);
+            height: 100vh; position: fixed; left: 0; top: 0; padding: 2.5rem 2rem;
+            display: flex; flex-direction: column; z-index: 2000; transition: var(--transition);
+        }
 
-## 4. Subscriptions, Payments & Refunds
-* [cite_start]**Billing:** All subscription payments are processed exclusively through the **Google Play Store** and are subject to their billing terms[cite: 19].
-* **Cancellations:** You may manage your subscription and turn off auto-renewal through your Google Play account settings.
-* [cite_start]**Availability:** While we strive for high uptime, we do not guarantee 100% uninterrupted service[cite: 17]. [cite_start]Servers may be updated or taken offline for maintenance[cite: 18].
+        .sidebar-logo { text-align: center; margin-bottom: 3.5rem; }
+        .sidebar .brand { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; }
+        .sidebar .brand span { color: var(--accent); }
 
-## 5. Disclaimer of Warranties
-[cite_start]The SiloVPN service is provided on an **"as is"** and **"as available"** basis[cite: 20]. [cite_start]We make no warranties, express or implied, regarding the reliability, security, or suitability of the service for specific purposes[cite: 20].
+        .nav-section { margin-bottom: 2.5rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px; }
 
-## 6. Limitation of Liability
-To the maximum extent permitted by law, SiloVPN and its developers shall not be liable for:
-* [cite_start]Any loss of data or connection issues during use[cite: 21].
-* [cite_start]Damages resulting from the misuse of the application or violation of these terms[cite: 22].
-* [cite_start]Service interruptions beyond our direct technical control[cite: 22].
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
+        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(8px); }
+        .nav-item i { width: 30px; font-size: 1.2rem; }
 
-## 7. Termination
-[cite_start]We reserve the right to restrict, suspend, or terminate your access to SiloVPN without notice if we determine, in our sole discretion, that you have violated these terms or misused the service[cite: 23].
+        /* --- الهيدر الاحترافي (المنيو يسار، اللوجو سنتر) --- */
+        .mobile-header {
+            display: none; width: 100%; padding: 1rem 1.5rem; background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; z-index: 1500; align-items: center;
+        }
 
-## 8. User Responsibility & Compliance
-[cite_start]You are solely responsible for ensuring that your use of SiloVPN complies with all applicable laws and regulations in your current physical location and jurisdiction[cite: 24].
+        .h-left { flex: 1; display: flex; justify-content: flex-start; }
+        .h-center { flex: 2; display: flex; justify-content: center; }
+        .h-right { flex: 1; } 
 
-## 9. Changes to Terms
-[cite_start]We reserve the right to update these terms at any time[cite: 25]. [cite_start]Continued use of the application following such changes constitutes your acceptance of the new terms[cite: 26].
+        .mobile-header .brand { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
+        .mobile-header .brand span { color: var(--accent); }
 
-## 10. Contact Us
-For support or inquiries regarding these terms:
-**Email:** support@silovpn.me
+        .menu-toggle {
+            background: var(--sidebar-bg); border: 1px solid var(--border);
+            width: 42px; height: 42px; border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+
+        /* --- Overlay --- */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); opacity: 0; transition: var(--transition); }
+        .overlay.active { display: block; opacity: 1; }
+
+        /* --- Main Content Area --- */
+        main { margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%; transition: var(--transition); }
+
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); width: 290px; }
+            .sidebar.active { transform: translateX(0); }
+            .mobile-header { display: flex; }
+            main { margin-left: 0; padding: 7rem 1.5rem 4rem 1.5rem; }
+        }
+
+        /* --- Terms Styling --- */
+        .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+        .date-badge { color: var(--accent); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; display: block; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; }
+        
+        section h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; margin: 3.5rem 0 1.2rem; display: flex; align-items: center; }
+        section h2 i { margin-right: 15px; color: var(--accent); background: rgba(0, 102, 255, 0.05); padding: 10px; border-radius: 12px; font-size: 1.3rem; }
+        
+        p { font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+        
+        /* بطاقة المحظورات (أحمر) */
+        .prohibited-box { background: #fff5f5; border: 1px solid rgba(255, 59, 48, 0.1); border-radius: 24px; padding: 2rem; margin: 2rem 0; border-left: 6px solid #FF3B30; }
+        
+        /* بطاقة المدفوعات (أخضر) */
+        .payment-box { background: #f6fff9; border: 1px solid rgba(52, 199, 89, 0.1); border-radius: 24px; padding: 2rem; margin: 2rem 0; border-left: 6px solid #34C759; }
+
+        .terms-list { list-style: none; margin: 1.5rem 0; }
+        .terms-list li { position: relative; padding-left: 2rem; margin-bottom: 15px; color: var(--text-gray); font-size: 1.05rem; display: flex; align-items: flex-start; }
+        
+        /* أيقونة الصح الأزرق */
+        .check li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 4px; }
+        
+        /* أيقونة المنع الأحمر */
+        .ban li::before { content: "\f05e"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #FF3B30; position: absolute; left: 0; top: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-header">
+        <div class="h-left">
+            <button class="menu-toggle" id="menuBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+        </div>
+        <div class="h-center">
+            <a href="index.html" class="brand">Silo<span>VPN</span></a>
+        </div>
+        <div class="h-right"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html" class="brand">Silo<span>VPN</span></a>
+        </div>
+        
+        <div class="nav-section">
+            <div class="section-label">Legal</div>
+            <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+            <a href="terms.html" class="nav-item active"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="section-label">Support</div>
+            <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Help Center</a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About Silo</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="page-header">
+            <span class="date-badge">Last Updated: March 2026</span>
+            <h1>Terms of Service</h1>
+            <p style="margin-top: 1.5rem;">By accessing or using <strong>SiloVPN</strong>, you agree to be bound by these Terms of Service. These terms constitute a legally binding agreement.</p>
+        </div>
+
+        <section>
+            <h2><i class="fa-solid fa-gavel"></i> 1. Acceptance of Terms</h2>
+            <p>Welcome to SiloVPN. Your access to and use of the service is conditioned on your acceptance of and compliance with these terms between you and the SiloVPN team.</p>
+
+            <h2><i class="fa-solid fa-user-check"></i> 2. Eligibility & Age Requirements</h2>
+            <ul class="terms-list check">
+                <li>You must be at least <strong>18 years old</strong> (or the legal age of majority) to use SiloVPN.</li>
+                <li>By using the service, you confirm that you possess the legal capacity to enter into this agreement.</li>
+            </ul>
+
+            <div class="prohibited-box">
+                <h3 style="font-family:'Outfit'; font-size:1.4rem; margin-bottom:1rem; color:#FF3B30;">3. License & Acceptable Use</h3>
+                <p style="color:var(--text-dark);">We grant you a personal, non-commercial license. You agree <strong>NOT</strong> to use the service for:</p>
+                <ul class="terms-list ban">
+                    <li><strong>Illegal Acts:</strong> Any activity that violates local or international laws.</li>
+                    <li><strong>Network Abuse:</strong> Hacking or interfering with any service provider.</li>
+                    <li><strong>Malicious Software:</strong> Distribution of viruses or harmful code.</li>
+                    <li><strong>Harmful Behavior:</strong> Disrupting the service for other users.</li>
+                </ul>
+            </div>
+
+            <div class="payment-box">
+                <h3 style="font-family:'Outfit'; font-size:1.4rem; margin-bottom:1rem; color:#34C759;">4. Subscriptions & Payments</h3>
+                <p style="color:var(--text-dark);">All subscription payments are processed exclusively through the <strong>Google Play Store</strong>.</p>
+                <ul class="terms-list check">
+                    <li><strong>Cancellations:</strong> Managed through your Google Play account settings.</li>
+                    <li><strong>Availability:</strong> We strive for high uptime, but do not guarantee 100% uninterrupted service.</li>
+                </ul>
+            </div>
+
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> 5. Disclaimer of Warranties</h2>
+            <p>The SiloVPN service is provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis. We make no warranties regarding reliability or security for specific purposes.</p>
+
+            <h2><i class="fa-solid fa-scale-balanced"></i> 6. Limitation of Liability</h2>
+            <p>SiloVPN and its developers shall not be liable for any data loss, connection issues, or damages resulting from misuse or violation of these terms.</p>
+
+            <h2><i class="fa-solid fa-user-slash"></i> 7. Termination</h2>
+            <p>We reserve the right to restrict or terminate your access without notice if we determine that you have misused the service.</p>
+
+            <h2><i class="fa-solid fa-globe"></i> 8. User Responsibility</h2>
+            <p>You are solely responsible for ensuring your use of SiloVPN complies with all applicable laws in your current physical location.</p>
+
+            <h2><i class="fa-solid fa-pen-to-square"></i> 9. Changes to Terms</h2>
+            <p>We reserve the right to update these terms at any time. Continued use of the application constitutes your acceptance of the new terms.</p>
+
+            <h2><i class="fa-solid fa-envelope"></i> 10. Contact Us</h2>
+            <p>For support or inquiries regarding these terms, please contact:<br>
+            <a href="mailto:support@silovpn.me" style="color:var(--accent); font-weight:700; text-decoration:none;">support@silovpn.me</a></p>
+        </section>
+        
+        <div style="margin-top: 6rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem;">
+            &copy; 2026 SiloVPN. All rights reserved.
+        </div>
+    </main>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        function toggle() { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); }
+        menuBtn.onclick = toggle; overlay.onclick = toggle;
+    </script>
+</body>
+</html>
