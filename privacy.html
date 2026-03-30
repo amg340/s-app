@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — SiloVPN</title>
+    <title>Privacy Policy — SiloVPN Elite</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -15,7 +15,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); display: flex; min-height: 100vh; overflow-x: hidden; }
 
         /* --- Sidebar Logic --- */
         .sidebar {
@@ -27,44 +27,64 @@
         .brand { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1.5px; margin-bottom: 4rem; }
         .brand span { color: var(--accent); }
 
+        .nav-section { margin-bottom: 2.5rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); margin-bottom: 1rem; padding-left: 12px; }
+
         .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
         .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
-        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateY(-2px); }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
         .nav-item i { width: 30px; font-size: 1.2rem; }
 
-        /* --- Mobile Header & Menu Toggle --- */
+        /* --- Mobile Navigation Header --- */
         .mobile-header {
-            display: none; width: 100%; padding: 1.5rem; background: #fff;
-            border-bottom: 1px solid var(--border); position: fixed; top: 0; z-index: 1100;
-            justify-content: space-between; align-items: center;
+            display: none; width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; z-index: 1100; justify-content: space-between; align-items: center;
         }
 
         .menu-toggle {
             background: var(--sidebar-bg); border: 1px solid var(--border);
             width: 45px; height: 45px; border-radius: 12px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-dark);
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
 
-        /* --- Main Content --- */
+        /* --- Overlay for Mobile --- */
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); z-index: 900; backdrop-filter: blur(4px);
+            opacity: 0; transition: var(--transition); pointer-events: none;
+        }
+        .overlay.active { display: block; opacity: 1; pointer-events: auto; }
+
+        /* --- Main Content Area --- */
         main { margin-left: 320px; flex: 1; padding: 8rem 12% 6rem 12%; transition: var(--transition); }
 
-        /* --- Mobile Responsive Rules --- */
+        /* --- Responsiveness --- */
         @media (max-width: 1024px) {
             .sidebar { transform: translateX(-100%); width: 280px; box-shadow: 20px 0 50px rgba(0,0,0,0.05); }
             .sidebar.active { transform: translateX(0); }
             .mobile-header { display: flex; }
             main { margin-left: 0; padding: 7rem 1.5rem 4rem 1.5rem; }
-            .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 900; backdrop-filter: blur(4px); }
-            .overlay.active { display: block; }
         }
 
         /* Content Styling */
-        .page-header { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
-        h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
-        h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin: 2.5rem 0 1rem; display: flex; align-items: center; }
-        h2 i { margin-right: 12px; color: var(--accent); }
-        p { font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
-        .highlight-card { background: #FBFBFD; border-left: 5px solid var(--accent); padding: 2rem; border-radius: 20px; margin: 2rem 0; }
+        .page-header { margin-bottom: 4rem; }
+        .last-updated { color: var(--accent); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; display: block; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+        
+        section h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; margin: 3.5rem 0 1.5rem; display: flex; align-items: center; }
+        section h2 i { margin-right: 15px; color: var(--accent); background: rgba(0, 102, 255, 0.05); padding: 10px; border-radius: 12px; font-size: 1.3rem; }
+        
+        p { font-size: 1.15rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+        
+        .highlight-card {
+            background: #FBFBFD; border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem;
+            margin: 2.5rem 0; border-left: 6px solid var(--accent);
+        }
+
+        .policy-list { list-style: none; margin: 1.5rem 0; }
+        .policy-list li { position: relative; padding-left: 2rem; margin-bottom: 12px; color: var(--text-gray); font-size: 1.1rem; line-height: 1.6; }
+        .policy-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 4px; }
     </style>
 </head>
 <body>
@@ -80,35 +100,68 @@
 
     <aside class="sidebar" id="sidebar">
         <a href="index.html" class="brand">Silo<span>VPN</span></a>
+        
         <div class="nav-section">
-            <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="section-label">Legal</div>
             <a href="privacy.html" class="nav-item active"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
             <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
-            <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Support</a>
-            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="section-label">Support</div>
+            <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Help Center</a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About Silo</a>
         </div>
     </aside>
 
     <main>
         <div class="page-header">
-            <span style="color:var(--accent); font-weight:700; font-size:0.8rem; letter-spacing:1px;">LAST UPDATED: MARCH 2026</span>
+            <span class="last-updated">Last Updated: March 2026</span>
             <h1>Privacy Policy</h1>
+            <p style="margin-top: 1.5rem;">At <strong>SiloVPN</strong>, we believe that privacy is a fundamental human right. Our application is designed to be lightweight, secure, and transparent.</p>
         </div>
 
         <section>
-            <h2><i class="fa-solid fa-gears"></i> 1. VpnService Utilization</h2>
-            <p>To provide its core functionality, SiloVPN utilizes the <strong>Android VpnService API</strong> to create a secure, encrypted tunnel at the system level for your traffic.</p>
-            
+            <h2><i class="fa-solid fa-handshake"></i> 1. Introduction & Commitment</h2>
+            <p>This Privacy Policy explains how we process information and, more importantly, what we do <strong>NOT</strong> collect. By using SiloVPN, you consent to the practices described herein.</p>
+
             <div class="highlight-card">
-                <p><strong>WireGuard® Protocol:</strong> Our infrastructure is built on modern cryptographic primitives ensuring high-speed performance and maximum security.</p>
+                <h2><i class="fa-solid fa-microchip" style="background:none; padding:0;"></i> 2. Core Functionality: Android VpnService</h2>
+                <p>To provide its core functionality, SiloVPN utilizes the <strong>Android VpnService API</strong> to create a secure, encrypted tunnel at the system level for your outgoing and incoming internet traffic.</p>
+                <ul class="policy-list">
+                    <li><strong>Implementation:</strong> This tunnel ensures that all data packets are encapsulated and protected from third-party interception.</li>
+                    <li><strong>Protocol:</strong> Built on the <strong>WireGuard® protocol</strong>, providing high-speed performance and state-of-the-art cryptographic primitives.</li>
+                </ul>
             </div>
 
-            <h2><i class="fa-solid fa-eye-slash"></i> 2. Strict No-Logs Guarantee</h2>
-            <p>We operate under a rigorous "No-Logs" policy. We do NOT collect, store, or share your online activity, IP addresses, or DNS queries.</p>
+            <h2><i class="fa-solid fa-eye-slash"></i> 3. Strict No-Logs Guarantee</h2>
+            <p>We operate under a rigorous "No-Logs" policy. We do NOT collect, store, or share:</p>
+            <ul class="policy-list">
+                <li><strong>Online Activity:</strong> No visibility into websites visited or apps used.</li>
+                <li><strong>Connection Identifiers:</strong> No logging of original IP addresses or timestamps.</li>
+                <li><strong>DNS Records:</strong> All queries remain private and unrecorded.</li>
+                <li><strong>Session Metadata:</strong> No tracking of data usage patterns.</li>
+            </ul>
 
-            <h2><i class="fa-solid fa-envelope"></i> 3. Contact Us</h2>
-            <p>For inquiries, reach out to: <a href="mailto:support@silovpn.me" style="color:var(--accent); text-decoration:none; font-weight:600;">support@silovpn.me</a></p>
+            <h2><i class="fa-solid fa-bug-slash"></i> 4. Limited Technical Diagnostics</h2>
+            <p>To maintain service stability, we may collect minimal, anonymized diagnostic data:</p>
+            <ul class="policy-list">
+                <li>Device model and Operating System version.</li>
+                <li>Aggregated crash reports and connection success rates.</li>
+            </ul>
+            <p>This data is strictly <strong>non-identifiable</strong> and used only for internal technical enhancements. We do NOT sell or trade this data.</p>
+
+            <h2><i class="fa-solid fa-globe"></i> 5. Global Compliance</h2>
+            <p>We comply with international data protection standards (GDPR, CCPA). SiloVPN does not knowingly collect personal information from children under the age of 13.</p>
+
+            <h2><i class="fa-solid fa-envelope"></i> 6. Contact Information</h2>
+            <p>For inquiries or data deletion requests: <br>
+            <a href="mailto:support@silovpn.me" style="color: var(--accent); font-weight: 700; text-decoration: none;">support@silovpn.me</a></p>
         </section>
+        
+        <div style="margin-top: 6rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem;">
+            &copy; 2026 SiloVPN. All rights reserved.
+        </div>
     </main>
 
     <script>
