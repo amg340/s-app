@@ -3,103 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SiloVPN — Elite. Invisible. Unstoppable.</title>
+    <title>About SiloVPN — Privacy & Performance</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         :root {
             --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD;
             --text-dark: #1D1D1F; --text-gray: #64748b; --border: rgba(0,0,0,0.06);
-            --radius: 24px; --transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            --radius: 24px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-        /* --- Global Header (Standard UI) --- */
+        /* --- الهيدر (الاسم يسار، المنيو يمين) --- */
         .header {
-            width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.8);
+            width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
             position: fixed; top: 0; left: 0; z-index: 1500;
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
         .brand span { color: var(--accent); }
 
         .menu-toggle {
             background: var(--sidebar-bg); border: 1px solid var(--border);
-            width: 46px; height: 46px; border-radius: 14px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: var(--transition);
+            width: 44px; height: 44px; border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
-        .menu-toggle:active { transform: scale(0.9); }
 
-        /* --- Right Sidebar --- */
+        /* --- القائمة الجانبية (تفتح من اليمين) --- */
         .sidebar {
-            width: 300px; background: var(--sidebar-bg); border-left: 1px solid var(--border);
-            height: 100vh; position: fixed; right: 0; top: 0; padding: 3rem 2rem;
+            width: 280px; background: var(--sidebar-bg); border-left: 1px solid var(--border);
+            height: 100vh; position: fixed; right: 0; top: 0; padding: 2.5rem 1.5rem;
             display: flex; flex-direction: column; z-index: 2000; 
             transform: translateX(100%); transition: var(--transition);
         }
-        .sidebar.active { transform: translateX(0); box-shadow: -20px 0 60px rgba(0,0,0,0.05); }
+        .sidebar.active { transform: translateX(0); box-shadow: -20px 0 50px rgba(0,0,0,0.05); }
+
+        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; display: block; }
+        .sidebar .brand { font-size: 1.8rem; }
 
         .nav-section { margin-bottom: 2.5rem; }
-        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-gray); margin-bottom: 1.2rem; letter-spacing: 1px; }
-        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: 18px; transition: var(--transition); margin-bottom: 6px; }
-        .nav-item.active { background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.04); color: var(--accent); }
-        .nav-item i { width: 30px; font-size: 1.1rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-gray); margin-bottom: 1rem; }
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
+        .nav-item.active { background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.04); color: var(--accent); }
+        .nav-item i { width: 30px; font-size: 1.2rem; }
 
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 1800; backdrop-filter: blur(4px); }
+        /* --- Overlay --- */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
 
-        /* --- Main Hero Area --- */
-        main { width: 100%; padding: 8rem 1.5rem 4rem 1.5rem; max-width: 1200px; margin: 0 auto; }
-
-        .hero { text-align: center; margin-bottom: 5rem; animation: fadeInUp 1s var(--transition); }
-        .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 102, 255, 0.06); color: var(--accent); padding: 10px 20px; border-radius: 100px; font-weight: 700; font-size: 0.85rem; margin-bottom: 2rem; }
-        
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -3px; line-height: 1; margin-bottom: 1.5rem; }
-        .hero h1 span { background: linear-gradient(135deg, var(--accent), #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.2rem; color: var(--text-gray); line-height: 1.6; max-width: 700px; margin: 0 auto 3rem auto; }
-
-        /* --- Features Grid (أيقونات ومعاني قوية) --- */
-        .features-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 1.5rem; 
-            margin-top: 4rem;
+        /* --- Content Area (إزاحة كبيرة لأسفل) --- */
+        main { 
+            width: 100%; 
+            padding: 12rem 1.5rem 6rem 1.5rem; /* زدنا الـ padding العلوي ليكون المحتوى بالأسفل */
+            transition: var(--transition); 
         }
-
-        .f-card { 
-            background: #FBFBFD; border: 1px solid var(--border); padding: 2.5rem; border-radius: var(--radius); 
-            transition: var(--transition); position: relative; overflow: hidden;
-        }
-        .f-card:hover { transform: translateY(-10px); background: #ffffff; box-shadow: 0 30px 60px rgba(0,0,0,0.05); border-color: var(--accent); }
-        
-        .f-icon { width: 60px; height: 60px; background: #ffffff; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent); margin-bottom: 1.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.02); }
-        .f-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 1rem; }
-        .f-card p { color: var(--text-gray); font-size: 1rem; line-height: 1.6; }
-
-        /* --- Encryption Banner --- */
-        .encryption-box { 
-            margin-top: 6rem; background: var(--text-dark); color: white; padding: 3rem 2rem; border-radius: var(--radius);
-            text-align: center; position: relative;
-        }
-        .encryption-box i { font-size: 3rem; color: var(--accent); margin-bottom: 1.5rem; }
-        .encryption-box h2 { font-family: 'Outfit'; font-size: 2rem; margin-bottom: 1rem; }
-
-        footer { text-align: center; margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-gray); font-size: 0.9rem; }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (min-width: 1025px) {
             .header { padding: 1.5rem 10%; }
             .sidebar { transform: translateX(0); left: 0; right: auto; border-left: none; border-right: 1px solid var(--border); width: 300px; }
             .menu-toggle { display: none; }
-            main { margin-left: 300px; padding: 8rem 5% 4rem 5%; width: calc(100% - 300px); }
+            main { margin-left: 300px; padding: 15rem 10% 6rem 10%; width: calc(100% - 300px); }
         }
+
+        /* --- About Content --- */
+        .page-header { margin-bottom: 4rem; }
+        .about-icon { color: var(--accent); font-size: 3rem; margin-bottom: 1.5rem; display: block; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 1rem; }
+        p { font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 1.5rem; }
+
+        .tech-box { background: var(--sidebar-bg); border: 1px solid var(--border); padding: 2.5rem; border-radius: var(--radius); margin: 2.5rem 0; }
+        .tech-tag { background: var(--accent); color: white; padding: 5px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; display: inline-block; }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .feature-card { background: white; padding: 1.5rem; border-radius: 18px; border: 1px solid var(--border); transition: var(--transition); }
+        .feature-card i { color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+        .feature-card h3 { font-family: 'Outfit'; font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.95rem; margin-bottom: 0; }
+
+        .mission-list { list-style: none; margin: 2rem 0; }
+        .mission-list li { position: relative; padding-left: 2.5rem; margin-bottom: 1.5rem; color: var(--text-gray); font-size: 1.05rem; display: flex; align-items: flex-start; }
+        .mission-list li::before { content: "\f3ed"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 4px; font-size: 1.2rem; }
+
+        .footer { margin-top: 6rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -112,57 +103,69 @@
     <div class="overlay" id="overlay"></div>
 
     <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <div class="brand">Silo<span>VPN</span></div>
+        </a>
         <div class="nav-section">
-            <div class="section-label">Main</div>
-            <a href="index.html" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+            <div class="section-label">General</div>
+            <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="about.html" class="nav-item active"><i class="fa-solid fa-circle-info"></i> About</a>
         </div>
         <div class="nav-section">
-            <div class="section-label">Compliance</div>
+            <div class="section-label">Legal</div>
             <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy</a>
             <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms</a>
         </div>
         <div class="nav-section">
             <div class="section-label">Support</div>
-            <a href="support.html" class="nav-item"><i class="fa-solid fa-headset"></i> Help Center</a>
-              <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+            <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Support</a>
         </div>
     </aside>
 
     <main>
-        <section class="hero">
-            <div class="badge"><i class="fa-solid fa-vault"></i> Military Grade Infrastructure</div>
-            <h1>The Internet.<br><span>Unlocked & Secure.</span></h1>
-            <p>SiloVPN is an engineering masterpiece designed for those who refuse to be tracked. Experience elite-grade encryption with the world's fastest tunneling protocols.</p>
-        </section>
-
-        <div class="features-grid">
-            <div class="f-card">
-                <div class="f-icon"><i class="fa-solid fa-ghost"></i></div>
-                <h3>Ghost Identity</h3>
-                <p>Become invisible. Our proprietary obfuscation technology masks your VPN traffic as normal web data, bypassing even the toughest firewalls.</p>
-            </div>
-
-            <div class="f-card">
-                <div class="f-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
-                <h3>Hyper-Speed</h3>
-                <p>Powered by WireGuard®. We’ve optimized our infrastructure for 4K streaming, lag-free gaming, and instant downloads without data caps.</p>
-            </div>
-
-            <div class="f-card">
-                <div class="f-icon"><i class="fa-solid fa-shield-cat"></i></div>
-                <h3>Elite Guard</h3>
-                <p>Encrypted with AES-256-GCM. Your data is encapsulated in a secure tunnel that even supercomputers can't breach. Absolute peace of mind.</p>
-            </div>
+        <div class="page-header">
+            <i class="fa-solid fa-rocket about-icon"></i>
+            <h1>About SiloVPN</h1>
+            <p>SiloVPN is a lightweight and privacy-focused application designed to redefine your digital freedom through secure and high-speed internet access.</p>
         </div>
 
-        <section class="encryption-box">
-            <i class="fa-solid fa-microchip"></i>
-            <h2>Zero-Logs Architecture</h2>
-            <p style="color: rgba(255,255,255,0.7);">Our systems are designed to forget. We don't store your history, your IP, or your timestamps. What you do online is strictly your business.</p>
-        </section>
+        <section>
+            <div class="tech-box">
+                <span class="tech-tag">Next-Gen Protocol</span>
+                <h2 style="font-family:'Outfit'; font-size:1.8rem; margin-bottom:1rem;">Powered by WireGuard®</h2>
+                <p>SiloVPN is built on the foundation of the <strong>WireGuard® protocol</strong>, a modern VPN technology that replaces legacy protocols with a leaner, faster, and more secure architecture.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-bolt"></i>
+                        <h3>High Performance</h3>
+                        <p>Optimized for lightning-fast speeds and low latency.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-lock"></i>
+                        <h3>Strong Encryption</h3>
+                        <p>Utilizing state-of-the-art cryptographic primitives.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h3>Efficient</h3>
+                        <p>Designed to be lightweight and battery-friendly.</p>
+                    </div>
+                </div>
+            </div>
 
-        <footer>
-            &copy; 2026 SiloVPN.me | Engineered for Excellence.
+            <h2 style="font-family:'Outfit'; font-size:2rem; margin: 4rem 0 1.5rem;">Our Mission</h2>
+            <p>At SiloVPN, we believe that privacy is a fundamental right. Our mission is built on three pillars:</p>
+            <ul class="mission-list">
+                <li><span><strong>Protect Privacy:</strong> Ensuring your online footprint remains yours alone.</span></li>
+                <li><span><strong>Network Security:</strong> Safeguarding your data on vulnerable public networks.</span></li>
+                <li><span><strong>User-Centric Design:</strong> Providing a simple, elite, and accessible VPN experience for everyone.</span></li>
+            </ul>
+            <p>We are committed to transparency, minimal data collection, and giving you absolute control over your digital identity.</p>
+        </section>
+        
+        <footer class="footer">
+            &copy; 2026 SiloVPN. All rights reserved.
         </footer>
     </main>
 
