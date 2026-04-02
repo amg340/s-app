@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>404 — Access Denied | SiloVPN</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD;
+            --text-dark: #1D1D1F; --text-gray: #64748b; --border: rgba(0,0,0,0.06);
+            --radius: 24px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
+
+        /* --- الهيدر (اسم يسار | منيو يمين) --- */
+        .header {
+            width: 100%; padding: 1.2rem 1.5rem; background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; left: 0; z-index: 1500;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
+        .brand span { color: var(--accent); }
+        .menu-toggle { background: var(--sidebar-bg); border: 1px solid var(--border); width: 44px; height: 44px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+        /* --- القائمة الجانبية (يمين) --- */
+        .sidebar { width: 280px; background: var(--sidebar-bg); border-left: 1px solid var(--border); height: 100vh; position: fixed; right: 0; top: 0; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; z-index: 2000; transform: translateX(100%); transition: var(--transition); }
+        .sidebar.active { transform: translateX(0); box-shadow: -20px 0 50px rgba(0,0,0,0.05); }
+        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; display: block; }
+        .nav-section { margin-bottom: 2.5rem; }
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(-8px); }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); }
+        .overlay.active { display: block; }
+
+        /* --- Content Area (إزاحة للأسفل لجمالية الخطأ) --- */
+        main { width: 100%; padding: 15rem 1.5rem 6rem 1.5rem; text-align: center; }
+
+        @media (min-width: 1025px) {
+            .header { padding: 1.5rem 10%; }
+            .sidebar { transform: translateX(0); left: 0; right: auto; border-left: none; border-right: 1px solid var(--border); width: 300px; }
+            .menu-toggle { display: none; }
+            main { margin-left: 300px; padding: 18rem 10% 6rem 10%; width: calc(100% - 300px); }
+        }
+
+        /* --- 404 Elements --- */
+        .error-code { font-family: 'Outfit'; font-size: 6rem; font-weight: 800; color: var(--accent); opacity: 0.2; line-height: 1; }
+        h1 { font-family: 'Outfit'; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -1.5px; }
+        p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 2.5rem; }
+        .back-btn { background: var(--accent); color: white; padding: 16px 32px; border-radius: 16px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-block; }
+        .back-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 102, 255, 0.2); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" class="brand">Silo<span>VPN</span></a>
+        <button class="menu-toggle" id="menuBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="sidebar-brand"><div class="brand">Silo<span>VPN</span></div></a>
+        <div class="nav-section">
+            <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy</a>
+            <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms</a>
+            <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Support</a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="error-code">404</div>
+        <h1>Page Not Found</h1>
+        <p>The secure tunnel to this page has been disconnected.<br>It may have been moved or deleted.</p>
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-house"></i> Return to Safety</a>
+        
+        <footer style="margin-top: 5rem; font-size: 0.8rem; color: var(--text-gray);">
+            &copy; 2026 SiloVPN. Security Infrastructure.
+        </footer>
+    </main>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        function toggle() { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); }
+        menuBtn.onclick = toggle; overlay.onclick = toggle;
+    </script>
+</body>
+</html>
