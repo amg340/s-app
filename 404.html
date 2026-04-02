@@ -18,7 +18,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-        /* --- الهيدر (مطابق تماماً للرئيسية) --- */
+        /* --- الهيدر (مرتبط بالرئيسية) --- */
         .header {
             width: 100%; padding: 1rem 1.2rem; background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
@@ -35,7 +35,7 @@
             display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
         }
 
-        /* --- القائمة الجانبية (مطابقة تماماً للرئيسية) --- */
+        /* --- القائمة الجانبية (تم ربط الشعار هنا أيضاً) --- */
         .sidebar {
             width: 280px; background: var(--sidebar-bg); border-left: 1px solid var(--border);
             height: 100vh; position: fixed; right: 0; top: 0; padding: 2.5rem 1.5rem;
@@ -44,7 +44,8 @@
         }
         .sidebar.active { transform: translateX(0); }
 
-        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; }
+        /* تعديل هنا: جعل الاسم رابطاً */
+        .sidebar-brand { margin-bottom: 3rem; text-decoration: none; display: block; }
         .sidebar .brand { font-size: 1.8rem; }
 
         .nav-section { margin-bottom: 2.5rem; }
@@ -57,7 +58,7 @@
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); }
         .overlay.active { display: block; }
 
-        /* --- منطقة المحتوى (نفس الإزاحة لضمان عدم الشعور بالانتقال) --- */
+        /* --- منطقة المحتوى --- */
         main { width: 100%; padding: 12rem 1.2rem 4rem 1.2rem; transition: var(--transition); text-align: center; }
 
         @media (min-width: 1025px) {
@@ -67,7 +68,6 @@
             main { margin-left: 300px; padding: 15rem 10% 6rem 10%; width: calc(100% - 300px); }
         }
 
-        /* --- 404 Content Styling --- */
         .error-num { font-family: 'Outfit'; font-size: clamp(5rem, 15vw, 8rem); font-weight: 800; color: var(--accent); opacity: 0.15; line-height: 1; margin-bottom: 1rem; }
         h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1rem; }
         .error-text { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -93,9 +93,9 @@
     <div class="overlay" id="overlay"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-brand">
+        <a href="index.html" class="sidebar-brand">
             <div class="brand">Silo<span>VPN</span></div>
-        </div>
+        </a>
         <div class="nav-section">
             <div class="section-label">Legal Information</div>
             <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
