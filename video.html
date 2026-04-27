@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SiloVPN — App Demonstration</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --accent: #0066FF; --bg: #ffffff; --sidebar-bg: #FBFBFD;
+            --text-dark: #1D1D1F; --text-gray: #64748b; --border: rgba(0,0,0,0.06);
+            --radius: 20px; --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
+
+        /* --- Header --- */
+        .header {
+            width: 100%; padding: 1rem 1.2rem; background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; left: 0; z-index: 1500;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .brand { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -1px; }
+        .brand span { color: var(--accent); }
+        .menu-toggle { background: var(--sidebar-bg); border: 1px solid var(--border); width: 44px; height: 44px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+        /* --- Sidebar --- */
+        .sidebar { width: 280px; background: var(--sidebar-bg); border-left: 1px solid var(--border); height: 100vh; position: fixed; right: 0; top: 0; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; z-index: 2000; transform: translateX(100%); transition: var(--transition); }
+        .sidebar.active { transform: translateX(0); }
+        .nav-item { display: flex; align-items: center; padding: 14px 18px; color: var(--text-dark); text-decoration: none; font-weight: 500; border-radius: var(--radius); transition: var(--transition); margin-bottom: 6px; }
+        .nav-item:hover { background: #ffffff; color: var(--accent); transform: translateX(-8px); }
+
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1800; backdrop-filter: blur(4px); }
+        .overlay.active { display: block; }
+
+        /* --- Content Area --- */
+        main { width: 100%; padding: 10rem 1.2rem 4rem 1.2rem; transition: var(--transition); text-align: center; }
+
+        @media (min-width: 1025px) {
+            .header { padding: 1.5rem 10%; }
+            .sidebar { transform: translateX(0); left: 0; right: auto; border-left: none; border-right: 1px solid var(--border); width: 300px; }
+            .menu-toggle { display: none; }
+            main { margin-left: 300px; padding: 12rem 10% 6rem 10%; width: calc(100% - 300px); }
+        }
+
+        h1 { font-family: 'Outfit'; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -1.5px; }
+        .video-desc { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- Video Player Styling --- */
+        .video-container {
+            max-width: 350px; /* ليتناسب مع شكل الجوال */
+            margin: 0 auto;
+            background: #000;
+            border-radius: 30px;
+            padding: 10px;
+            border: 8px solid #1D1D1F;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .download-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            margin-top: 3rem; color: var(--accent); font-weight: 700;
+            text-decoration: none; border: 2px solid var(--accent);
+            padding: 12px 24px; border-radius: 14px; transition: var(--transition);
+        }
+        .download-btn:hover { background: var(--accent); color: white; }
+
+        .footer { margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 2rem; color: var(--text-gray); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" class="brand">Silo<span>VPN</span></a>
+        <button class="menu-toggle" id="menuBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="nav-section">
+            <a href="privacy.html" class="nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+            <a href="terms.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Terms of Service</a>
+            <a href="support.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> Help Center</a>
+            <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        </div>
+    </aside>
+
+    <main>
+        <h1>App Demonstration</h1>
+        <p class="video-desc">Experience the core functionality and security features of SiloVPN in this brief walkthrough recorded for the app review process.</p>
+        
+        <div class="video-container">
+            <video controls poster="icon.png">
+                <source src="Screen_Recording_SiloVPN.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <a href="Screen_Recording_SiloVPN.mp4" download class="download-btn">
+            <i class="fa-solid fa-download"></i> Download Video
+        </a>
+
+        <footer class="footer">
+            &copy; 2026 SiloVPN. Developer Console Resources.
+        </footer>
+    </main>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        function toggle() { sidebar.classList.toggle('active'); overlay.classList.toggle('active'); }
+        menuBtn.onclick = toggle; overlay.onclick = toggle;
+    </script>
+</body>
+</html>
